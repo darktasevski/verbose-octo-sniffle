@@ -1,2 +1,0 @@
-# Introduction
-MEAN stack

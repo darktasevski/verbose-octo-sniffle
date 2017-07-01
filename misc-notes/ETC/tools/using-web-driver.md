@@ -1,5 +1,0 @@
-- [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/)
-- [InternetExplorerDriver](https://msdn.microsoft.com/library/dn800898(v=vs.85).aspx) and [Supported WebDriver Commands](http://dev.modern.ie/platform/documentation/webdriver-commands/)
-- [FirefoxDriver](https://code.google.com/p/selenium/wiki/FirefoxDriver)
-- [OperaDriver](https://code.google.com/p/selenium/wiki/OperaDriver) or [this open source project](https://github.com/operasoftware/operachromiumdriver)
-- [SafariDriver](https://github.com/SeleniumHQ/selenium/wiki/SafariDriver) and [this blog on setting it up on Mac](https://blog.codecentric.de/en/2015/02/selenium-webdriver-safari-8/)

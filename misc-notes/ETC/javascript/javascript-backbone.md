@@ -1,1 +1,0 @@
-[Backbone](http://backbonejs.org/)
