@@ -1,0 +1,16 @@
+Steamroller
+
+Flatten a nested array. You must account for varying levels of nesting.
+
+--
+
+function steamrollArray(arr) {
+  
+  return arr.reduce(function(acc, val) {
+      // Check to see if concatenated value is an array, if so, re-run function, if not add to accumulator
+      return acc.concat(Array.isArray(val) ? steamrollArray(val) : val );
+  }, []);
+  
+}
+
+steamrollArray([1, [2], [3, [[4]]]]);

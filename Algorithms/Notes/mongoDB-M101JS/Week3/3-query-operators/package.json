@@ -1,0 +1,20 @@
+{
+  "name": "3-query-operators",
+  "version": "1.0.0",
+  "description": "query operators",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "operators"
+  ],
+  "author": "Aos",
+  "license": "ISC",
+  "dependencies": {
+    "assert": "^1.4.1",
+    "command-line-args": "^4.0.6",
+    "command-line-usage": "^4.0.0",
+    "mongodb": "^2.2.28"
+  }
+}

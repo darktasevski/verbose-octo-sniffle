@@ -1,0 +1,21 @@
+{
+  "name": "hw1-5",
+  "version": "1.0.0",
+  "description": "mongoDB HW1-4",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "challenge"
+  ],
+  "author": "me",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "consolidate": "^0.14.5",
+    "express": "^4.15.3",
+    "mongodb": "^2.2.27",
+    "nunjucks": "^3.0.1"
+  }
+}

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Contact</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="/assets/styles.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+  <% include partials/nav.ejs %>
+  <h1>Contact us</h1>
+  <p>Thanks for getting in touch</p>
+  <p>You contacted: <%= data.who %> in the <%= data.department %> department.</p>
+  <p>We will reply to you at <%= data.email %></p>
+
+</body>
+
+</html>

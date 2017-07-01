@@ -1,0 +1,24 @@
+Missing Letters
+
+Find the missing letter in the passed letter range and return it.
+
+If all letters are present in the range, return undefined
+
+--
+
+function fearNotLetter(str) {
+  
+  var code = 0;
+  
+//   Iterate through string to find char code at i
+  for (var i = 0; i < str.length; i++) { 
+    // Compares # @ i with one lower, if in sequence, returns 1
+    code = str.charCodeAt(i) - (str.charCodeAt(i - 1));
+    if (code > 1) { //Returns character one before current, aka missing character
+      return String.fromCharCode(str.charCodeAt(i) - 1);
+    }
+  }
+  return undefined;
+}
+
+fearNotLetter("bce");
