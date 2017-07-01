@@ -1,0 +1,39 @@
+Sum All Primes
+
+Sum all the prime numbers up to and including the provided number.
+
+A prime number is defined as a number greater than one and having only two divisors, one and itself. For example, 2 is a prime number because it's only divisible by one and two.
+
+The provided number may not be a prime.
+--
+
+
+function sumPrimes(num) {
+  
+  
+  // This method utilizes Sieve of Eratosthenes
+  var primes = [];
+  var sieve = [];
+  var sum = 0;
+  
+  for (var i = 2; i <= num; i++) {
+    if (!sieve[i]) {
+      primes.push(i); // If i is not marked, it is prime
+      
+      // Marks multiples of i by looping (j += i)
+      for (var j = i * 2; j <= num; j += i) {
+        sieve[j] = true;
+      }
+    }
+  }
+  
+  // Sums array of primes
+  for (var k = 0; k < primes.length; k++) {
+    sum += primes[k];
+  }
+  
+  return sum;
+
+}
+
+sumPrimes(10);

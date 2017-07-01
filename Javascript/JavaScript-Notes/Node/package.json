@@ -1,0 +1,16 @@
+{
+  "name": "say_hello_node",
+  "version": "1.0.1",
+  "description": "say hello node",
+  "main": "sayHelloNode.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "say",
+    "hello",
+    "Node"
+  ],
+  "author": "wang",
+  "license": "MIT"
+}

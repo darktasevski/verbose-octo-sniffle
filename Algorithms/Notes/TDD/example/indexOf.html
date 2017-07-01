@@ -1,0 +1,111 @@
+<script src="../SimpleTest.js"></script>
+<script>
+  // indexOf()
+  // Returns the first index at which a given element can be found in the array
+  // If not found, returns -1
+
+  // Prototype implementation:
+  // function indexOf(array, searchElement, fromIndex) {
+  // 	 for (var i = 0; i < arr.length; i++) {
+  // 		 if (arr[i] === searchElement) {
+  // 			 return i;
+  //     }
+  //   }
+  //   return -1;
+  // }
+
+  // Function signature
+  // indexOf(array, searchElement[, fromIndex])
+
+  // Return value:
+  // First index of element in the array, -1 if not found
+
+  // Description:
+  // Compares searchElement to elements using strict equality (===)
+
+  // Optional parameter: fromIndex
+  // The index to start the search at (default = 0)
+  // Cases:
+  // If fromIndex >= array.length, -1 is returned (array is not searched)
+  // If fromIndex < 0 (negative number), taken as offset from end of array -- array is still searched front to back
+  // If fromIndex < 0, and offset is greater than the length of array, fromIndex = 0
+
+  function indexedOf(array, searchElement, fromIndex) {
+    var index = 0;
+
+    if (arguments.length > 2) {
+      index = fromIndex;
+      if (index >= array.length) {
+        return -1;
+      } else if (index < 0) {
+        var newIndex = Math.abs(index) - array.length;
+        if (newIndex < 0) {
+          index = 0;
+        } else {
+          index = newIndex;
+        }
+      }
+    }
+
+    for (index; index < array.length; index++) {
+      if (array[index] === searchElement) {
+        return index;
+      }
+    }
+    return -1;
+
+  }
+
+  tests({
+
+    'It should return the index of the searchElement': function () {
+      var testArray = [1, 2, 3];
+      var returnedIndex = indexedOf(testArray, 1);
+      eq(returnedIndex, 0)
+    },
+
+    'It should compare the searchElement with array elements using strict equality': function () {
+      var testArray = [1, "1"];
+      var returnedIndex = indexedOf(testArray, "1");
+      eq(returnedIndex, 1);
+    },
+
+    'It should return -1 if searchElement is not found in array': function () {
+      var testArray = [1, 2, 3];
+      var returnedIndex = indexedOf(testArray, 4);
+      eq(returnedIndex, -1)
+    },
+
+    'It should start at index 0 if fromIndex is not given': function () {
+      var testArray = [1, 2, 3];
+      var returnedIndex = indexedOf(testArray, 1);
+      eq(returnedIndex, 0)
+    },
+
+    'If optional fromIndex is given, it should start the search at that index': function () {
+      var testArray = ["not searched", 2, 3, 4, 5];
+      var returnedIndex = indexedOf(testArray, "not searched", 2);
+      eq(returnedIndex, -1)
+    },
+
+    'If fromIndex is greater than or equal to array.length, do not search array (return -1)': function () {
+      var testArray = [1, 2, 3, 4, 5];
+      var returnedIndex = indexedOf(testArray, 1, 5);
+      eq(returnedIndex, -1)
+    },
+
+    'If fromIndex is a negative number, it is taken as the offset from the end of the array': function () {
+      var testArray = [1, 2, 3, 4, 5];
+      var returnedIndex = indexedOf(testArray, 2, -4);
+      eq(returnedIndex, 1)
+    },
+
+    'If fromIndex is a negative number, and the offset is larger than the length of the array, the whole array will be searched': function () {
+      var testArray = [1, 2, 3, 4, 5];
+      var returnedIndex = indexedOf(testArray, 2, -6);
+      eq(returnedIndex, 1)
+    },
+    
+  });
+
+</script>

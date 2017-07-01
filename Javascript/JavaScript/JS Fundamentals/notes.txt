@@ -1,0 +1,502 @@
+alert is the most basic debugging tool
+
+log can be expanded inside dev tools
+
+both alert and log belong to the global window object
+
+weakly/dynamically typed language
+  - does not need to specify what type of data is stored
+  - data type can change
+
+variables without var/let automatically become a GLOBAL variable ( VERY BAD)
+  -use camelcasing
+
+Objects inherit properties and methods from other Objects
+    -ex hasOwnProperty
+
+Variable Types:
+PRIMITIVES:
+  -number (primary DT)
+    pos/neg
+    octal, exponential, hexadecimal
+    +/- infinity
+    Nan (not a number). Nothing is equal to Nan ==> isNan() to check
+  -string (primary DT)
+    '' or ""
+
+  -boolean (primary DT)
+    falsey values:
+      false, 0, '', null, undefined, NaN
+    all else are truthy
+  -undefined (special data types)
+    sometimes undefined and null are equal
+  -null (special data types)
+
+COMPOSITES:
+  -array
+    -container for mutliple values
+    -fixed numerical indices (starting with 0)
+  -objects
+    -container for key/value pairs
+    -dot notation or bracket notation
+    -indices using keys
+    -"associative arrays"
+
+Operators
+  +,-,*,/,**,%,++,--
+
+  prefix mode ==> returned, then in/decremented
+  postfix mode ==> in/decremented, then returned
+
+Assignment Operators
+
+Compariosn Operators
+  equality
+    regular vs strict operator
+    ==      vs ===
+    b/c type coercion (value AND type has to be true)
+    recommended to use strict operators
+  greater than
+  less than
+
+  Uniary Operators
+    used for one operator
+    delete ==> to delete objects
+
+    typeof
+      -number ==> number
+      -string ==> string
+      -boolean ==> boolean
+      -arrays ==> object
+      -null ==> object      //NOT null, bc backwards compatability
+
+  Logical operators
+    used for multiple operators
+    AND
+      -does not need to be booleans
+
+      !!(true && 1)
+      -"short-circuits" ==> if first operand is true, returns first operator
+
+    OR
+      -returns true if any of the operators are true
+      -stops to return true if any are true
+
+    COMMA
+      -LOWEST precedence
+      ex console.log('compund', 1 + 1)
+      //compund
+      //2
+
+    BITWISE Operators     //not common
+
+Operator precedence
+  -paranthesis is highest priority
+  -when equal precedence, sometimes is evaluated from left to right
+
+
+Objects
+  -should ALWAYS make objects using literal
+  -if trying to update a property that does not exist, JS will add a new property
+
+
+  -property = value/ keys pairs
+
+  Object Literal syntax:
+  -recommended way
+    var object = {
+      property1: true,
+      property2: 'hello'
+    }
+
+  New object syntax:
+    -used to make CUSTOM objects
+    var object = new Object()
+
+  Property Accessor
+    -dot notation
+      can reassign values of the property
+    -ex: object.property1;
+
+    -square bracket notation
+      can also reassign values of property
+      useful to use variable as key to access value
+
+Functions
+  -invoking fx:
+    myFunction(args);
+  -always returns a value
+  -once fx returns, they stop
+  -can also store functions in a variables
+    "Hoisting"
+      -variable declarations are ran first in JS (for var)
+        ==> let and const are NOT hoisted as expected in ES6
+      -always declare variables at the top of a fx (best practice)
+
+  -can also define them to invoke automatically
+    -by wrapping fx declaration around in (), and having extra () at the end
+    -or by using a Uninary operator in front of declaration
+      -"leading bang syntax"
+      -also okay to use any other uninary operator
+
+
+Scope
+  -defines the visability of variables in different places
+
+  Global scope
+    -window in the browser
+    -can be accessed and updated anywhere in the code (BAD)
+    -can inspect in browser by "window" in console
+    -variables declared here are GLOBAL (leaky)
+    -cannot look into local variables
+
+      The Window object
+        -has many built in methods
+        -window.location.href ==> to find url
+
+  Function Scope
+    -ONLY functions can create its own scope (locally)
+    -variables here are local variables
+    -can see any variables inside the local => parent => ... => global scope
+    -used to protect variables!
+
+Strict Mode
+'use strict';
+  -enforces rules in JS
+  -recommended to ALWAYS use Strict mode
+    -b/c it can catch silent errors (easier to debug)
+    -prevents global variables to be used
+
+This
+  -usually an object
+  -value depends on where it is accessed
+    -like using call, or apply (to control what this is pointing to)
+
+  -if in global scope, this points to the window object
+
+  -if inside a method, this points to the custom object
+
+  -can be used in Constructor fxs to create instances of an object
+
+  -can also be used as an event handler
+    ex: invoke a fx when triggered (on click or button)
+
+Reserved Words
+  -"unexpected tokens"
+  -ex: variables, names, function names, object keys, new
+
+  to get around this: quote it and use bracket notation to access
+    ex: 'class'
+
+Conditionals
+    If Statements
+      -usually compare single values (variables)
+    Else
+
+    -best to evaluate the more likely condition first
+
+    -else at the end is NOT needed, but recommended
+
+    -all TRUTHY statements will be evaluated
+      -all +/- numbers, infinity, non-empty strings, or objects will be true
+      - 0 is "falsey"
+
+    Ternary Operators
+
+Switch Statements
+    -"faster"
+    -more readable?
+
+    -will "fall through" if no break expression
+    -can use default (similar to else)
+
+Loops
+  FOR
+    -most common
+    -used for arrays
+    -can set 2 variables
+      1) for index
+      2) to store arr.length (faster when array is very long)
+    -for increments, best to use assignment operator (+= or -=)
+
+    -FASTEST loop in JS
+
+  FOR IN
+    -used for objects
+    -SLOWEST loop in JS
+
+  WHILE
+    -executes code as long as the condtion returns true
+    -be careful for infinite loops!
+    -can use BREAK to end execution early
+    -condition is checked BEFORE the body of the loop is executed
+
+  DO WHILE
+    -executs while condition is true
+    -condition is checked AFTER the body is executed ONCE
+      ==> means loop runs at LEAST once
+
+
+Timers
+  -can evaluate strings as if it were code (bad practice)
+  -hard to debug
+  -also NOT secure
+  so... pass in a function name or function expression
+
+  **JS is single-threaded... so the time argument passed to timers are the MINIMUM
+  time to execute** (remember event stack?)
+
+  Browsers have a minimum timeout/interval (usually 4ms), but can still pass in 0
+
+  How do we stop Timeout/Interval??
+  -use clearInterval(ID) or clearTimeout(ID) methods
+
+  TIMEOUT
+    -executes block once after the timeout
+    -setTimeout()
+
+  INTERVAL
+    -repeatedly executes block after the interval
+    -setInterval()
+
+
+
+Strings
+  -can be made as literals (preferred) or as objects
+
+
+  .length
+
+  .split
+    -string ==> array
+
+  .indexOf
+    -returns first occurrance of the search string
+    -returns -1 if no string is found
+    -useful when combined with conditional
+
+  .lastIndexOf
+    -same as indexof
+    -starts from the end of string, works backwards
+
+  .toUpperCase
+    -capitalizes entire string
+    -does not take arguments
+    -returns a NEW string
+
+  .toLowerCase
+    -returns a NEW string
+
+  .substring
+    -start at first argument, return rest of staring until end argument
+    -cannot use negative numbers or NaN
+      ==> automatically converts to 0
+    -takes up to 2 arguments
+      1) start index to begin
+      2) end index
+
+  .slice
+    -same as substring, but can use negative arguments
+      ==> if negative, will start from the end of the string
+    -gives more control than
+
+  .trim
+    -to trim space characters from start and end
+
+
+Arrays
+
+  .length
+
+MUTATES THE ARRAY
+  Adding to front/back
+    .push
+      -add to back
+    .unshift
+      -add to front
+
+  Removing from front/back
+    .pop
+      -remove from back
+    .shift
+      -remove from front
+
+  .splice
+    -to replace items in an array
+    -takes 3 arguments
+      1) index at which to start
+      2) number of items to remove
+      3) items to replace
+
+  .reverse
+    -to reverse the array
+
+  .sort
+    -sorts the items in an array
+    -uses UNICODE to sort... (beware!)
+    -can pass a comparator function into the sort method
+
+Accesser Methods( does NOT mutate)
+
+  .join
+    -joins array into a string
+    -default uses , as delimiter
+
+  .indexOf
+    -returns the index of
+    -or returns -1 if it does not exist
+    -doesnt work for duplicates
+    -starts from beginning
+  .lastIndexOf
+    -starts from the end
+
+  .slice
+    -returns a new array between the specified indexes
+        ==> start = inclusive, end = NOT inclusive
+    -if passing negative number as first argument, starts backwards
+
+Iterator Methods (for Arrays)
+
+  FOR
+
+  FOR EACH
+    -pass a function for the array to iterate over
+    -the function is performed each time
+    -2nd argument is the THIS argument
+
+  EVERY
+    -similar to forEach
+    -stops iterating when it returns a falsey value
+    -good way to test all items with a condition
+
+  SOME
+    -tests SOME items for a given condition
+
+  FILTER
+    -passed a callback to test the array
+
+  MAP (does not mutate)
+    -returns a NEW arary of the return values of the cb fx
+    -
+
+  REDUCE
+    -reduces array to a single value
+    -callback is an accumulator
+    -accepts a fx
+    -2nd argument is the start
+
+  REDUCERIGHT
+    -same as
+
+Object Methods
+
+  -we can make custom methods...
+  -by default, will be enumerable
+
+
+  .constructor
+    -property of object instances
+    -can test for this using the hasOwnProperty method
+
+  .hasOwnProperty
+    -see above
+
+  .propertyIsEnumerable
+    -to see if a FOR IN loop will iterate thru this property
+
+  .toString (all objects have this)     ==> also works with arrays
+    -returns a string representation of the object
+    -when used on array, uses comma as default delimiter
+    -somewhat useful to test ARRAY VS OBJECT... but
+      ==> use Object.prototype.toString.call([])
+      ==> pass call whatever we want to test
+      ==> better way to test!
+
+  .valueOf
+    -get the string literal of a string object created from NEW keyword
+    -not very useful... but JS uses this to coerce type
+
+Functions
+
+  -.length refers to the number or arguments
+
+  CALL
+    -used to invoke a function, and specifies what the THIS object is
+    -call passes 1 to n arguments to the fx
+    -first argument sets the THIS object
+    -2nd argument is passed to the "first argument" of a regular fx
+
+
+  APPLY
+    -also uses invokes a function, and specifies what the THIS object is
+    but.... also accepts a single argument after the THIS argument ==> ARRAY of arguments
+    -slightly more flexible compared to CALL b/c we can pass in an unexpected number of arguments
+
+  BIND
+    -used to control the THIS object
+    -does NOT invoke the function itself...
+    -returns a fx with its THIS object set
+    -can create a new bound fx for the THIS object (the fee in our example)
+
+Dates and Times
+
+  -must use NEW keyword (from the constructor)
+
+  GETTERS
+    -can get month, day, or year of the local time
+    -can also get UTC time
+    -day of the week (sunday is 0 to 6)
+  SETTERS
+
+  CONVERTERS
+    -return transformed dates
+
+
+Math
+  -built in Math methods
+  -Constants like...
+    -Pi
+    -E (euler's function)
+
+  Rounding
+    -ceil() (round up)
+    -floor() (round down)
+    -round() (to nearest integer)
+
+  Largest/Smallest
+    -max()
+      ==> can take any # of arguments,
+      but will return NaN if there are any non-numeric arguments
+    -min()
+
+  Absolute Value
+    -abs()
+  Square Root
+    -sqrt()
+    - only for positive numbers, will return NaN for negatives
+  Raise to Power
+    -pow()
+  Random Number
+    -rand()
+      -between 0(inclusive) to 1(exclusive)
+  Trig Functions
+    -sin, cos, etc...
+
+Working with HTML
+  DOM = Document Object Model
+    -used to work with webpages
+    -have nodes (parents, children, siblings) like a family tree
+
+  Selecting Elements
+    all safe to use in all current browsers
+    -getElementByID
+      fastest way to select 1 element
+      returns the reference of the element/node
+      returns null if no reference by that ID
+    -getElementsByClassName
+      returns a node LIST (like an array) with a length property (# of elements in the list)
+      can use a regular for loop to access
+    -getElementsByTagName
+      also returns a node list, even though there is only 1 element
+    -getElementsByName
+      also returns a node list

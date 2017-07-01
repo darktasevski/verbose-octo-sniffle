@@ -1,0 +1,114 @@
+<!-- https://scotch.io/tutorials/a-visual-guide-to-css3-flexbox-properties -->
+<!-- http://codepen.io/justd/pen/yydezN -->
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			.my-container {
+				border: 5px solid #2c3e50;
+				background-color: #34495e;
+				width: 500px;
+				height: 500px;
+
+			  	display: -webkit-flex; /* Safari */
+			  	display: flex;
+
+			  	/* for inline display: */
+			  	/*display: -webkit-inline-flex; 
+				display: inline-flex;*/
+
+				/*------------ direction of items:  */
+				-webkit-flex-direction: row;  /* row | row-reverse | column | column-reverse */
+				flex-direction:         row;  /* row | row-reverse | column | column-reverse */
+
+
+				/* if the items should go to the next line, if there is not enough */
+				/* nowrap | wrap | wrap-reverse */ 
+				-webkit-flex-wrap: wrap;
+				flex-wrap:         wrap; 
+
+
+
+				align-content: stretch;
+				align-items: stretch;
+			}
+
+			.my-item {
+				background-color: #95a5a6;
+				border: 5px solid #7f8c8d;
+				padding: 10px;
+				flex-grow: 1;      /* this is like bootstrap columns! but more flexible! */
+				/*width: 100px;*/      /* dont set height and width if you are going to stretch the item... */
+				/*height: 100px;*/
+			}
+
+		</style>
+	</head>
+	<body>
+
+
+	<div class="my-container">
+		<div class="my-item">
+			<p>hello1</p>
+			<p>hello1</p>
+
+		</div>
+
+		<div class="my-item">
+			<p>hello2</p>
+		</div>
+
+		<div class="my-item">
+			<p>hello</p>
+		</div>
+
+		<div class="my-item">
+			<p>hello</p>
+		</div>
+
+		<div class="my-item">
+			<p>hello</p>
+		</div>
+
+		<div class="my-item">
+			<p>hello</p>
+		</div>
+
+		<div class="my-item">
+			<p>hello</p>
+		</div>
+
+		<div class="my-item">
+			<p>hello</p>
+		</div>
+
+		<div class="my-item">
+			<p>hello</p>
+		</div>
+
+		<div class="my-item">
+			<p>hello</p>
+		</div>
+
+		<div class="my-item">
+			<p>hello</p>
+		</div>
+
+		<div class="my-item">
+			<p>hello</p>
+		</div>
+
+		<div class="my-item">
+			<p>hello</p>
+		</div>
+
+		<div class="my-item">
+			<p>hello</p>
+		</div>
+
+	
+
+	</div>
+
+	</body>
+</html>

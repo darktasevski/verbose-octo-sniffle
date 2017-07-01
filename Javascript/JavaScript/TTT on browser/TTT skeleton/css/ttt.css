@@ -1,0 +1,57 @@
+/*cell*/
+li {
+  float: left;
+  width: 90px;
+  height: 90px;
+  border: 5px solid black;
+  background: gray;
+  cursor: pointer;
+}
+
+/* border*/
+ul {
+  list-style: none;
+  margin: 30px auto;
+  width: 300px;
+}
+
+li:hover {
+  background: yellow;
+}
+
+h1 {
+  font-size: 60px;
+  margin: 30px;
+}
+
+.x {
+  content: 'X';
+  background: white;
+  font-size: 60px;
+  display: block;
+  line-height: 90px;
+}
+
+.o {
+  content: 'X';
+  background: black;
+  font-size: 60px;
+  display: block;
+  line-height: 90px;
+}
+
+.x:after {
+  content: 'X';
+  background: red;
+  font-size: 60px;
+  display: block;
+  line-height: 90px;
+}
+
+.o:after {
+  content: 'O';
+  background: green;
+  font-size: 60px;
+  display: block;
+  line-height: 90px;
+}

@@ -1,0 +1,15 @@
+/*
+FLEXBOX
+
+- you need to specify a container and items.
+
+- you can change the orientation of the flow of items, like: left-to-right, right-to-left, up-down, down-up, or center
+- you can choose to wrap or not the items
+- you can choose to streach or not, (vertically or horizontally)
+- you can specify the order of the items
+- margin:  it will use the existing space to suck it close to the element
+- PERFECT CENTERING!!! : (margin: auto -> in the item)
+- alignment of a specific item (align-self -> in the item)
+- the 'flex:2' property of an item (acts like bootstrap columns)
+
+*/

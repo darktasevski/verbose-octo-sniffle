@@ -1,0 +1,14 @@
+Graph jargon:
+
+Vertices, Vertex = Nodes, Node
+Edge             = a link between two nodes
+Adjacent         = a neighbor
+
+vertices representation:
+V = {a,b,c,d}                       
+
+Edge representation:
+E = { {a,b}, {b,a}, {a,c} }        
+
+Adjacent vertices of a vertex:
+adj[b] = {a, c}

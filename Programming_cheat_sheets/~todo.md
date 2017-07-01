@@ -1,0 +1,4 @@
+- work on design patterns
+- work on graph databases
+- write a node chat-app, file-uploader...
+- add a 'master file' so all repeated files contents get to that file, eventually delete other files

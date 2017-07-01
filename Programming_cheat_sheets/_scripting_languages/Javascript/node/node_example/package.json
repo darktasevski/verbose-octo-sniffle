@@ -1,0 +1,26 @@
+{
+  "name": "myApp",
+  "version": "1.0.0",
+  "description": "example app",
+  "main": "app.js",
+  "dependencies": {
+    "ejs": "^2.3.4"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.10.0"
+  },
+  "scripts": {
+    "test": "I dont know"
+  },
+  "repository": {
+    "type": "git",
+    "url": "I dont know"
+  },
+  "keywords": [
+    "I",
+    "dont",
+    "know"
+  ],
+  "author": "Brian Spinos",
+  "license": "ISC"
+}

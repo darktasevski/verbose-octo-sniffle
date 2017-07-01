@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+    <head>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    </head>
+
+    <body>
+        <br />
+
+
+
+
+
+        <div class="container">
+          <div ng-include="'file1.htm'"></div>
+        </div>
+
+
+
+        <div class="container" ng-controller="usersController">
+            <p>Search: <input type="text" ng-model="my_name_search"></p>
+            <button class="btn btn-success" ng-click="count = count + 1">
+                <span class="glyphicon glyphicon-user"></span>
+                Click me!
+            </button>
+
+            <p>{{ count }}</p>
+
+            <p>Name: <input type="text" ng-model="name"></p>
+            <p ng-bind="name"></p>
+            {{ firstName + " " + lastName }}
+            <hr />
+            <table class="table table-striped">
+                <tr ng-repeat="person in names | filter:my_name_search | orderBy:'Country' ">
+                    <td>
+                        <b>{{person["Name"] }}</b>
+                        {{ person["City"] + " " + person["Country"] | uppercase }}
+                    </td>    
+                </tr>
+            </table>
+        </div>
+
+    <script src="myApp.js"></script> <!-- load the module first, then the controllers -->
+    <script src="usersController.js"></script>
+    </body>
+</html>

@@ -1,0 +1,142 @@
+/* CSS tutorial: */
+
+.someClass {
+    /* ------------------------------------------------------------------------------------------- display */
+    /**
+     * A block-level element always starts on a new line and takes up the full width available 
+     * (stretches out to the left and right as far as it can).
+     */
+    display: block;
+
+    /**
+     * An inline element does not start on a new line and only takes up as much width as necessary.
+     */
+    display: inline;
+
+    /**
+     * its a modern alternative to 'floating' elements!
+     * you could use 'float: left' when you want some boxes side by side, 
+     * and the ability to resize the screen, (but you would need to use 'clear: left;' 
+     * for the next element that you dont want to float)
+     * BUT!!!: you can use 'display: inline-block' and you dont need to use the 'clear: left;' 
+     * for the next element that you dont want to float!!!
+     */
+    display: inline-block;
+
+    /**
+     * as if the element is not there, it does not take up the space it once did!
+     */
+    display: none;
+
+    /**
+     *  invisible but takes up space
+     */
+    visibility: hidden;
+
+    /* ------------------------------------------------------------------------------------------- position */
+    /**
+     * (default) (scrolling moves it)
+     */
+    position: static;
+
+    /**
+     * (away from its normal position)
+     */
+    position: relative;
+
+    /**
+     * (scrolling does not move it)
+     */
+    position: fixed;
+
+    /**
+     * (positioned relative to the parent???)
+     * use top, bottom, left, right, z-index properties also!
+     */
+    position: absolute;
+
+    /* ------------------------------------------------------------------------------------------- z-index */
+    /**
+     * specifies  which element goes on top of which
+     * The z-index property specifies the stack order of an element.
+     * An element with greater stack order is always in front of an element with a lower stack order.
+     */
+    z-index: 99;
+
+    /* ------------------------------------------------------------------------------------------- width */
+    /**
+     * (of content in box-model)
+     * % (percentage) is relative to the parent
+     * auto - the browser calculates
+     */
+    width: 50px;
+    width: 50%;
+    width: auto;
+
+    /* ------------------------------------------------------------------------------------------- max-width */
+    /**
+     * (percentage) is relative to the parent
+     */
+    max-width: 300px;
+    max-width: 50%;
+
+    /* ------------------------------------------------------------------------------------------- Margin */
+    /**
+     * auto - the browser calculates (to horizontally center the element within its parent.)
+     * % (percentage) is relative to the parent
+     * inherit - (from the parent) (for indentation!) 
+     *     - The inherit keyword specifies that a property should inherit its value from its parent element.
+     * the -100% or -100px  is allowed - for overlapping
+     */
+    margin: auto;
+    margin: 50%;
+    margin: inherit;
+    margin: -100%;
+    margin: -100px;
+
+    /* ------------------------------------------------------------------------------------------- clear */
+    /**
+     * specifies which side(s) of an element, floating elements are not allowed to float
+     * use it on an element that you dont want to float!
+     */
+    clear: left;
+    clear: right;
+
+    /* ------------------------------------------------------------------------------------------- overflow */
+    /**
+     * (Specifies what happens if content overflows an element's box)
+     * auto  - if a element is floating, and part of it is going outside of its parent, use this!
+     * scroll (clpped, but it will scroll)
+     * visible(default)|hidden|scroll|auto|initial|inherit;
+     */
+    overflow: hidden;
+    overflow: scroll;
+    overflow: auto;
+    overflow: initial;
+    overflow: inherit;
+
+    /* ------------------------------------------------------------------------------------------- */
+
+}
+
+/*
+colors:
+
+000 400 800 c00
+004 404 804 c04
+008 408 808 c08
+00c 40c 80c c0c
+040 440 840 c40
+044 444 844 c44
+048 448 848 c48
+04c 44c 84c c4c
+080 480 880 c80
+084 484 884 c84
+088 488 888 c88
+08c 48c 88c c8c
+0c0 4c0 8c0 cc0
+0c4 4c4 8c4 cc4
+0c8 4c8 8c8 cc8
+0cc 4cc 8cc ccc
+
+*/ 

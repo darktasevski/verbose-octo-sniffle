@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <!-- angular -->
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+
+        <!-- ui-grid js and css-->
+        <script src="http://ui-grid.info/release/ui-grid.js"></script>
+        <link rel="stylesheet" href="http://ui-grid.info/release/ui-grid.css" type="text/css">
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-touch.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-animate.js"></script>
+
+        <!-- bootstrap -->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+
+        <!--
+
+        <script src="http://ui-grid.info/docs/grunt-scripts/csv.js"></script>
+        <script src="http://ui-grid.info/docs/grunt-scripts/pdfmake.js"></script>
+        <script src="http://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>
+        -->
+
+
+
+        <style>
+            .myGrid {
+                width: 800px;
+                height: 300px;
+              }
+        </style>
+
+        <script>
+            angular.module('myApp', ['ngAnimate', 'ngTouch', 'ui.grid', 'ui.grid.edit', 'ui.grid.pagination', 'ui.grid.cellNav'])
+            .controller('appCtrl', ['$scope','uiGridConstants', function($scope, uiGridConstants){
+                //--------------------------------------------------------------------------------------------------------------
+                $scope.test = 123;
+
+
+                //--------------------------------------------------------------------------------------------------------------
+
+                $scope.gridOptions1 = {
+                    // pagination options:
+                    paginationPageSizes: [2, 10, 25, 50, 75],
+                    paginationPageSize: 10,
+
+
+                    enableGridMenu: true, // the top right menu!
+                    showGridFooter: true, // very simple stuff, but you can add a template, start with copying the angular template
+                    // showColumnFooter: true, // you need to use aggregations ???
+                    enableFiltering: true, // automatically adds the searchfield!!!
+                    enableSorting: true,
+                    onRegisterApi: function(gridApi){
+                        $scope.grid1Api = gridApi;
+                    }
+                };
+
+                // Once the grid has rendered, changes to the columnDef don't reflect in the grid, so use another approach
+                // DOCUMENTATION: http://ui-grid.info/docs/#/api/ui.grid.class:GridOptions.columnDef
+                $scope.gridOptions1.columnDefs = [
+                    {
+                        name: 'firstName',
+                        enableCellEdit: true, // API from the ui.grid.edit module
+                        // visible: false, // make the field invisible!
+                        // width: '50%', // percentage of the whole width of the grid
+                        // filter: { term: 'foo' } // the filter can be pre-populated! (and it WILL filter)
+                    },
+                    {
+                        name: 'lastName',
+
+                        // for a dropdown:
+                        filter: {
+                                  // term: 'Carney', // default option
+                                  type: uiGridConstants.filter.SELECT,
+                                  selectOptions: [ { value: 'Carney', label: 'Carney' }, { value: '2', label: 'female' } ]
+                                }
+                    },
+                    {
+                        name: 'company'
+                    },
+                    {
+                        name: 'employed',
+                        enableSorting: false,
+                        enableFiltering: false
+                    },
+                    {
+                        name: 'age',
+
+                        // for sorting purposes:
+                        type: 'number' // 'string' | 'boolean' | 'number' | 'date' (javascript date object) | 'object' | 'numberStr'
+                    },
+                    {
+                        name: 'nationality',
+
+                        //------------------ dropdown start
+                        editableCellTemplate: 'ui-grid/dropdownEditor',
+                        // width: '20%',
+                        cellFilter: 'mapNatianality', // to map IDs to names, use a filter, yes, an angular filter!
+                        editDropdownValueLabel: 'country',
+                        editDropdownOptionsArray: [
+                            { id: 1, country: 'USA'},
+                            { id: 2, country: 'Brazil'},
+                            { id: 3, country: 'Canada'},
+                            { id: 4, country: 'France'},
+                            { id: 5, country: 'Germany'},
+                            { id: 6, country: 'Spain'},
+                            { id: 7, country: 'Italy'},
+                        ]
+                        //------------------ dropdown end
+                    }
+                ];
+
+                $scope.gridOptions1.data = [
+                    {
+                        "firstName": "Brian",
+                        "lastName": "Spinos",
+                        "company": "PRX",
+                        "nationality": 1,
+                        "age": 27,
+                        "employed": true
+                    },
+                    {
+                        "firstName": "Erich",
+                        "lastName": "Smith",
+                        "company": "ABC",
+                        "nationality": 2,
+                        "age": 25,
+                        "employed": true
+                    },
+                    {
+                        "firstName": "Rick",
+                        "lastName": "Smith",
+                        "company": "XYZ",
+                        "nationality": 1,
+                        "age": 30,
+                        "employed": true
+                    }
+                ];
+
+                //--------------------------------------------------------------------------------------------------------------
+            }])
+            .filter('mapNatianality', function(){
+                var nationalityHash = {
+                    1: 'USA',
+                    2: 'Brazil',
+                    3: 'Canada',
+                    4: 'France',
+                    5: 'Germany',
+                    6: 'Spain',
+                    7: 'Italy',
+                };
+
+                return function(input) {
+                    if (!input){
+                        return '';
+                    } else {
+                        return nationalityHash[input];
+                    }
+                };
+            }); // end of module
+            //================================================================================================================
+        </script>
+    </head>
+    <body>
+        <div ng-app='myApp'>
+            <div ng-controller='appCtrl'>
+                <h1>Angular Ui Grids {{test}}</h1>
+
+                <div ui-grid="gridOptions1" ui-grid-edit ui-grid-pagination class="myGrid"></div>
+            </div>
+        </div>
+    </body>
+</html>

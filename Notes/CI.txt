@@ -1,0 +1,20 @@
+Continuous Integration
+During the developement, developer used to commit lots of changes to shared repo. so every time code is commited (integrated) in repo, there should be a mecahnisam to test whether it is not breaking the application. (any kind of regression is not there).This kind of practice while development is called as continuous integration.
+
+If you dont integrate continuously, you will have very log periods between integration. so it will be hard to detect/fix the problems/issues which will arise during integration.Such Integration problems can easily knock a project off or cause-it to fail altogether.
+
+CI Tools are kind of one click deployment tools.
+
+There are different tools to achieve continous integration.some of are self hosted while for others you have to install & configure them.
+
+Self hosted
+===========
+Travis CI (open source)- work with github
+Travis Pro (paid service)- work with private repo ???
+Cirle CI
+
+StandAlone
+==========
+Jenkins
+Atlassin Bamboo
+TeamCity

@@ -1,0 +1,20 @@
+1) Make sure Java is installed.
+    FYI for Installing Java on ubuntu
+    sudo add-apt-repository ppa:webupd8team/java
+    sudo apt-get update
+    sudo apt-get install oracle-java8-installer
+    After that to set JAVA_HOME path run following
+    sudo apt-get install oracle-java8-set-default
+
+1) Download android studio from here. https://developer.android.com/studio/index.html
+2) Installation instruction for android studio https://developer.android.com/studio/install.html
+   for  64 bit ubuntu users, you need to install some 32-bit libraries with the following command:
+        sudo apt-get install libc6:i386 libncurses5:i386 libstdc++6:i386 lib32z1 libbz2-1.0:i386
+        If you are running 64-bit Fedora, the command is: sudo yum install zlib.i686 ncurses-libs.i686 bzip2-libs.i686
+3) set Android Path
+    export ANDROID_HOME=/home/nirmalpatel/Android/Sdk
+    export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+
+Now to build an ionic app refer this link https://scotch.io/tutorials/build-a-mobile-app-with-angular-2-and-ionic-2
+here we have to use gradle build tool, which is not available by default in android-studio installation.for that download android sdk tools from here https://dl.google.com/android/repository/tools_r25.2.3-windows.zip
+and then extract and copy templates folder to ~/Android/Sdk/tools/ folder.

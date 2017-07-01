@@ -1,0 +1,21 @@
+Everything Be True 
+
+Check if the predicate (second argument) is truthy on all elements of a collection (first argument).
+
+Remember, you can access object properties through either dot notation or [] notation.
+
+--
+
+function truthCheck(collection, pre) {
+  // Is everyone being true?
+  
+  // Loop through array, working on each object
+  for (var i = 0; i < collection.length; i++) {
+    // Check for boolean value of collection/predicate
+  	if (collection[i][pre]) {
+      // If false, break loop, return false
+      return false;
+    }
+  }
+  return true;
+}

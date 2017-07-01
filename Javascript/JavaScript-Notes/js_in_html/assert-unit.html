@@ -1,0 +1,71 @@
+<html>
+	<head>
+		<title>
+			Test Suiter
+		</title>
+		<script>
+		//即时执行函数，作用域会立即消除
+		// (function(){})()
+		(function(){
+			// 定义一个results变量用以存放测试结果
+			var results;
+			this.assert = function assert(value,desc){
+				// 跟最简单的测试一样
+				// 要学习这种创建DOM,操作DOM的方式，比较新颖
+
+				//创建li元素
+				var li = document.createElement("li");
+				//用三元操作符给li元素的属性className赋值，进而可以通过class来决定li元素在页面上显示的样式
+				li.className = value ? "pass":"fail";
+				//添加描述元素
+				li.appendChild(document.createTextNode(desc));
+				//把li变量处理好了之后，添加到局部总变量results上
+				results.appendChild(li);
+
+				// 如果value值为false,那么父元素的样式也设置为fail类
+				if(!value){
+					li.parentNode.parentNode.className = "fail";
+				}
+				// 返回li元素
+				return li;
+			}
+			// 即时函数的test属性
+			this.test = function test(name,fn){
+				results = document.getElementById("results")
+				results = assert(true,name).appendChild(document.createElement("ul"))
+				fn();
+			}
+		})();
+			//创建测试变量
+			var a = 12
+			var b = 12
+			//window一旦加载成功之后，立即执行测试，分组测试
+			window.onload = function(){
+				test("A test",function(){
+					assert(true,"The test suiter is running")
+					assert(false,"Fail!")
+					assert(a==12,"a value is Good!")
+					assert(b!=12,"b value is wrong")
+				})
+				test("B test",function(){
+					assert(true,"The B test")
+					assert(true,"The B Test")
+				})
+				test("C test",function(){
+					assert(false,"The C test ")
+				})
+			}
+		</script>
+		<style>
+		 	#results li.pass{
+		 		color:green;
+		 	}
+		 	#results li.fail{
+		 		color:red;
+		 	}
+		</style>
+	</head>
+	<body>
+		<ul id= "results"></ul>
+	</body>
+</html>

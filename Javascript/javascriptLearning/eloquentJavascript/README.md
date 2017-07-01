@@ -1,0 +1,1 @@
+Each Markdown file holds my notes and code as I experiement with the concepts taught in [Eloquent JavaScript](http://eloquentjavascript.net).

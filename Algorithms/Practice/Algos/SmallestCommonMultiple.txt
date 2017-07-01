@@ -1,0 +1,33 @@
+Smallest Common Multiple
+
+Find the smallest common multiple of the provided parameters that can be evenly divided by both, as well as by all sequential numbers in the range between these parameters.
+
+The range will be an array of two numbers that will not necessarily be in numerical order.
+
+e.g. for 1 and 3 - find the smallest common multiple of both 1 and 3 that is evenly divisible by all numbers between 1 and 3.
+
+--
+function smallestCommons(arr) {
+  
+  // Declare max & min value in array
+  var max = Math.max.apply(null, arr);
+  var min = Math.min.apply(null, arr);
+  var lcm = max;
+  
+  // Create new array with range max to min
+  var spread = [];
+  for (var i = max; i >= min; i--) {
+    spread.push(i);
+  }
+  
+  // Loop through spread checking for even divisibility by max
+  for (var j = 0; j < spread.length; j++) {
+    if (lcm % spread[j] !== 0) {
+      lcm += max;
+      j = 0;
+    }
+  }
+  return lcm;
+}
+
+--

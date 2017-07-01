@@ -1,0 +1,101 @@
+<html>
+    <head>
+        <title>JQuery_1_exercise</title>
+    </head>
+    <body>
+        <div class="test_1">
+            这是一个测试文件
+        </div>
+        <ul class="test_2">
+            <li>这是第二个测试文件</li>
+            <li>这是第二个测试文件</li>
+        </ul>
+        <ul class="test_3">
+            <li>这是第3个测试文件</li>
+            <li>这是第3个测试文件</li>
+        </ul>
+        <div style="display: flex;width:100%;">
+            <button type="button" id="trigger_toggle1">toggle()</button>
+            <button type="button" id="trigger_toggle2">slideToggle()</button>
+            <button type="button" id="trigger_toggle3">fadeToggle()</button>
+        </div>
+        <ul class="test_4" style="display: none;">
+            <li>这是第4个测试文件</li>
+            <li>这是第4个测试文件</li>
+        </ul>
+        <ul id="test_5" style="position:absolute;border:1px solid red;left:0px;top:200px;">
+            <li>这是第5个测试文件</li>
+            <li>这是第5个测试文件</li>
+        </ul>
+        <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script>
+            /** 1.
+              * window.onload() vs $document.ready()
+              * 尽管放在前边，但是会先执行window.onload(){};
+              */
+            window.onload = function(){
+                //window.onload之后加载后边的匿名函数
+                alert("Hello,window.onload")
+            }
+            $(document).ready(
+                function(){
+                    alert("HEllo,document.ready")
+                });
+
+            /** 2.
+              * DOM vs JQuery DOM
+              * ----------------------------
+              * 区别和相互沾化
+              */
+            $(document).ready(function(){
+                var $test_2 = $(".test_2");
+                //jquery DOM
+                console.log($test_2);
+                //jquery DOM --> read DOM
+                var dom_test_2 = $test_2[0];
+                //Real DOM
+                console.log(dom_test_2); 
+                //Real DOM --> JQuery DOM
+                console.log($(dom_test_2)); 
+                console.log($(dom_test_2)==$test_2); //False;
+            })
+            /** 3.
+              * $(document).ready ==> $().ready()
+              * jquery链式操作
+              * 通过jquery设置CSS的样式
+              */
+            $().ready(function(){
+                //链式操作
+                $(".test_3")
+                    .css({"backgroundColor":"#ccc","font-weight":"900"})
+                    .css("border","1px solid rgba(200,0,200,0.4)");
+            })
+            /**4. 
+              * Toggle in JQuery
+              * jquery toggle()
+              * slideToggle()
+              * fadeToggle()
+              */
+            $().ready(function(){
+                $("#trigger_toggle1").bind("click",function(){
+                    $(".test_4").toggle(100);
+                });                
+                $("#trigger_toggle2").bind("click",function(){
+                    $(".test_4").slideToggle(100);
+                });
+                $("#trigger_toggle3").bind("click",function(){
+                    $(".test_4").fadeToggle(100);
+                });
+            })
+            /*
+             * .animate({},300)
+             */
+            $().ready(function(){
+                $("#test_5").bind("click",function(){
+                    alert($(this).get(0));
+                    $("#test_5").animate({left : "500px;"},300)
+                });
+            })
+        </script>
+    </body>
+</html>

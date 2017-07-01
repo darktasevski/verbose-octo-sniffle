@@ -1,0 +1,949 @@
+Programming - Basically telling a computer what to do and how to do it.
+
+Source File - This is a document written in a programming language that tells the computer what you want it to do.
+
+Programming Language - This is a language that (usually) resembles a mixture of English and math. It is both simple and strict enough for a compiler to understand.
+
+Compiler - This translates a programming language that you can understand into a language the computer can understand, you can call it Computerese.
+
+Library - A collection of useful code that has already been translated into Computerese that you can use in the programs you write.
+
+.NET Platform - A large collection of tools, languages and libraries for writing programs with a heavy emphasis on productivity.
+
+Sure, there's a lot more to it than that. You could tell them about IL and JIT compiling or garbage collection but these details aren't very relevant to a non-programmer.
+
+*******************************************************************************************************************************************************************************************
+******************************************************************************* JAVASCRIPT *******************************************************************************************
+*******************************************************************************************************************************************************************************************
+For loop =  When you know when to stop looping.
+While loop = When you dont know when to stop looping. Used with true or false instead of numbers. Condition to be checked should be defined outside the loop. After reaching true, condition should be set to false to avoid infinite loop. increment is done inside the loop.
+
+As we mentioned, for loops are great for doing the same task over and over when you know ahead of time how many times you'll have to repeat the loop. On the other hand, while loops are ideal when you have to loop, but you don't know ahead of time how many times you'll need to loop. However, you can combine a while loop with a counter variable to do the same kind of work a for loop does. In these cases, it's often a matter of preference.
+
+// FOR loop
+
+for (i=0; i<6; i++) {
+    
+	console.log(i);   
+
+}
+
+
+
+// WHILE loop
+
+var i = 0;
+
+while (i<6) {
+    
+	console.log(i);
+    
+	i++;
+
+}
+
+// DO WHILE loop
+
+var condition = false;
+
+i = 99;
+
+do {
+    
+	console.log(i) 
+
+} while (condition);
+
+DO WHILE
+Sometimes you want to make sure your loop runs at least one time no matter what. When this is the case, you want a modified while loop called a do/while loop.
+This loop says: "Hey! Do this thing one time, then check the condition to see if we should keep looping." After that, it's just like a normal while: the loop will continue so long as the condition being evaluated is true.
+
+IF vs DO WHILE = IF runs once if something is true, DO WHILE runs continuously if something is true.
+
+**************************************************************
+Let's go back to the analogy of computer languages being like regular spoken languages. In English, you have nouns (which you can think of as "things") and verbs (which you can think of as "actions"). Until now, our nouns (data, such as numbers, strings, or variables) and verbs (functions) have been separate.
+
+No longer!
+
+Using objects, we can put our information and the functions that use that information in the same place.
+
+You can also think of objects as combinations of key-value pairs (like arrays), only their keys don't have to be numbers like 0, 1, or 2: they can be strings and variables.
+
+An object is like an array in this way, except its keys can be variables and strings, not just numbers.
+
+Objects are just collections of information (keys and values) between curly braces, like this:
+
+var myObject = {
+    key: value,
+    key: value,
+    key: value
+};
+
+Objects allow us to represent in code real world things and entities (such as a person or bank account). We do this by storing all relevant information in one place—an object.
+
+How do we create an object? Like declaring a variable, or defining a function, we use var, followed by the name of the object and an equals sign. Each object then:
+
+starts with {
+has information inside
+ends with };
+
+Each piece of information we include in an object is known as a property. Think of a property like a category label that belongs to some object. When creating an object, each property has a name, followed by : and then the value of that property. For example, if we want Bob's object to show he is 34, we'd type in age: 34.
+
+age is the property, and 34 is the value of this property. When we have more than one property, they are separated by commas. The last property does not end with a comma.
+
+----------------
+
+There are two ways to create an object: using object literal notation (which is what you just did) and using the object constructor.
+
+Literal notation is just creating an object with curly braces, like this:
+
+var myObj = { // THIS IS ALSO CALLED AN ASSOCIATIVE ARRAY
+    type: 'fancy',
+    disposition: 'sunny'
+};
+
+var emptyObj = {};
+
+When you use the constructor, the syntax looks like this:
+
+var myObj = new Object();
+
+This tells JavaScript: "I want you to make me a new thing, and I want that thing to be an Object.
+
+You can add keys to your object after you've created it in two ways:
+
+myObj["name"] = "Charlie";
+myObj.name = "Charlie";
+
+Both are correct, and the second is shorthand for the first. See how this is sort of similar to arrays?
+
+http://stackoverflow.com/questions/4859800/should-i-be-using-object-literals-or-constructor-functions
+OBJECTS: LITERAL NOTATION vs CONSTRUCTOR?
+- Literal = Single instance
+- Constructor = Multiple instances
+
+The method we've used to create objects uses object literal notation—that is, creating a new object with { } and defining properties within the brackets.
+
+Another way of creating objects without using the curly brackets { } is to use the keyword new. This is known as creating an object using a constructor.
+
+The new keyword creates an empty object when followed by Object(). The general syntax is:
+
+var objectName = new Object();
+
+-----------------
+In the last section, we discussed properties. We can think of properties as variables associated with an object. Similarly, a method is just like a function associated with an object.
+
+Methods serve several important purposes when it comes to objects.
+
+They can be used to change object property values. The method setAge on line 4 allows us to update bob.age.
+They can be used to make calculations based on object properties. Functions can only use parameters as an input, but methods can make calculations with object properties. 
+
+METHODS ARE FUNCTIONS ASSOCIATED WITH A PARTICULAR OBJECT.
+
+// here is bob again, with his usual properties
+var bob = new Object();
+bob.name = "Bob Smith";
+bob.age = 30;
+// this time we have added a method, setAge
+bob.setAge = function (newAge){
+  bob.age = newAge;
+};
+// here we set bob's age to 40
+bob.setAge(40);
+// bob's feeling old.  Use our method to set bob's age to 20
+---------------------------
+// here we define our method using "this", before we even introduce bob
+var setAge = function (newAge) {
+  this.age = newAge;
+};
+// now we make bob
+var bob = new Object();
+bob.age = 30;
+// and down here we just use the method we already made
+bob.setAge = setAge; // THIS SETS THE FUNCTION TO BECOME A METHOD FOR BOB, I.E. A PROPERTY OF BOB.
+  
+// change bob's age to 50 here
+bob.setAge(50);
+-----------------
+CUSTOM CONSTRUCTOR
+
+function Person(name,age) {
+  this.name = name;
+  this.age = age;
+  this.species = "Homo Sapiens";
+}
+
+var sally = new Person("Sally Bowles", 39);
+var holden = new Person("Holden Caulfield", 16);
+
+console.log("sally's species is " + sally.species + " and she is " + sally.age);
+console.log("holden's species is " + holden.species + " and he is " + holden.age);
+
+-----------------------------
+ANOTHER CUSTOM CONSTRUCTOR WITH METHODS
+
+function Rectangle(height, width) {
+  this.height = height;
+  this.width = width;
+
+  this.calcArea = function() {
+      return this.height * this.width;
+  };
+  // put our perimeter function here!
+  this.calcPerimeter = function() {
+      return 2*this.height + 2*this.width;    
+  };
+  
+}
+
+var rex = new Rectangle(7,3);
+
+var area = rex.calcArea();
+var perimeter = rex.calcPerimeter();
+
+console.log(area); 
+console.log(perimeter);
+
+------------------------------------------------------------------
+ANOTHER CUSTOM CONSTRUCTOR WITH METHODS
+
+function Rabbit(adjective) {
+    this.adjective = adjective;
+    this.describeMyself = function() {
+        console.log("I am a " + this.adjective + " rabbit");
+    };
+}
+
+// now we can easily make all of our rabbits
+var rabbit1 = new Rabbit("fluffy");
+var rabbit2 = new Rabbit("happy");
+var rabbit3 = new Rabbit("sleepy");
+
+rabbit1.describeMyself();
+rabbit2.describeMyself();
+rabbit3.describeMyself();
+
+------------------------------------------------------------------
+
+ANOTHER CUSTOM CONSTRUCTOR WITH ARRAY
+
+// Our person constructor
+function Person (name, age) {
+    this.name = name;
+    this.age = age;
+}
+
+// Now we can make an array of people
+var family = new Array();
+family[0] = new Person("alice", 40);
+family[1] = new Person("bob", 42);
+family[2] = new Person("michelle", 8);
+family[3] = new Person("timmy", 6);
+// add the last family member, "timmy", who is 6 years old
+
+console.log(family.length);
+
+------------------------------------------------------------------
+**** In addition to making arrays of Objects, we can use objects as parameters for functions as well.
+
+// Our person constructor
+function Person (name, age) {
+    this.name = name;
+    this.age = age;
+}
+
+// We can make a function which takes persons as arguments
+// This one computes the difference in ages between two people
+var ageDifference = function(person1, person2) {
+    return person1.age - person2.age;
+}
+
+var alice = new Person("Alice", 30);
+var billy = new Person("Billy", 25);
+
+// get the difference in age between alice and billy using our function
+var diff = ageDifference(alice, billy);
+console.log(diff);
+
+------------------------------------------------------------------
+// Our person constructor
+function Person (name, age) {
+    this.name = name;
+    this.age = age;
+}
+
+// We can make a function which takes persons as arguments
+// This one computes the difference in ages between two people
+var ageDifference = function(person1, person2) {
+    return person1.age - person2.age;
+};
+
+// Make a new function, olderAge, to return the age of
+// the older of two people
+var olderAge = function(person1, person2) {
+    if (person1.age > person2.age) return person1.age;
+    else return person2.age;
+}
+
+// Let's bring back alice and billy to test our new function
+var alice = new Person("Alice", 30);
+var billy = new Person("Billy", 25);
+
+console.log("The older person is " + olderAge(alice, billy));
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+LITERAL NOTATION vs OBJECT CONSTRUCTOR vs CUSTOM CONSTRUCTOR COMPARISON
+
+var moby_dick = { // LITERAL NOTATION DOES NOT BELONG TO BOOK CLASS
+    pages: 300,
+    author: "Herman Melville"
+};
+
+Book.moby_dick = { // LITERAL NOTATION DOES BELONGS TO BOOK CLASS
+    pages: 300,
+    author: "Herman Melville"
+};
+
+// 3 lines required to make harry_potter OBJECT CONSTRUCTOR DOES NOT BELONG TO BOOK CLASS
+var harry_potter = new Object();
+harry_potter.pages = 350;
+harry_potter.author = "J.K. Rowling";
+
+// A custom constructor for book CUSTOM CONSTRUCTOR 
+function Book (pages, author) {
+    this.pages = pages;
+    this.author = author;
+}
+
+// Use our new constructor to make the_hobbit in one line BELONGS TO BOOK CLASS
+var the_hobbit = new Book(320, "J.R.R. Tolkien");
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+function Circle (radius) {
+    this.radius = radius;
+    this.area = function () {
+        return Math.PI * this.radius * this.radius;
+        
+    };
+    // define a perimeter method here
+    this.perimeter = function () {
+        return 2 * Math.PI * this.radius;    
+    }
+};
+
+var circle1 = new Circle(5);
+
+console.log(circle1.area());
+console.log(circle1.perimeter());
+
+
+------------------------------------------------------------------
+
+You can add objects directly to friends, like this:
+
+var friends = {
+    bill: {},
+    steve: {}
+};
+
+Or with the bracket ([]) or dot(.) notation, like this:
+
+friends[bill] = {};
+friends.steve = {};
+
+Or with Object constructors, like this:
+
+var friends = new Object();
+
+friends.bill = new Object();
+friends.steve = new Object();
+
+Notice that "bill" and "steve" are not capitalized!
+
+--------------------------------
+var friends = new Object();
+
+friends.bill = { // THIS BELONGS TO THE FRIENDS OBJECT
+    firstName: "Bill",
+    lastName: "Gates",
+    number: "2222 3333"
+};
+
+var steve = new Object(); // THIS ONE DOES NOT
+steve.firstName = "Steve";
+steve.lastName = "Jobs";
+steve.number = "4444 9999";
+-------------------------------------------------
+
+var friends = new Object();
+
+friends.bill = {
+    firstName: "Bill",
+    lastName: "Gates",
+    number: "2222 3333",
+    address: ["Street", "1"]
+};
+
+friends.steve = {
+    firstName: "Steve",
+    lastName: "Jobs",
+    number: "4444 9999",
+    address: ["Avenue", "2"]
+};
+
+var list = function() {
+    for (var friend in friends) {
+        console.log(friend);
+    }    
+}
+
+var search = function(name) {
+    for (var friend in friends) {
+        if (friends[friend].firstName === name) {
+            console.log(friends[friend]);
+            return friends[friend];
+        }    
+    }
+}
+-------------------------------------------------------------------------------
+var bob = {
+    firstName: "Bob",
+    lastName: "Jones",
+    phoneNumber: "(650) 777-7777",
+    email: "bob.jones@example.com"
+};
+
+var mary = {
+    firstName: "Mary",
+    lastName: "Johnson",
+    phoneNumber: "(650) 888-8888",
+    email: "mary.johnson@example.com"
+};
+
+var contacts = [bob, mary];
+
+function printPerson(person) {
+    console.log(person.firstName + " " + person.lastName);
+}
+
+function list() {
+	var contactsLength = contacts.length;
+	for (var i = 0; i < contactsLength; i++) {
+		printPerson(contacts[i]);
+	}
+}
+
+/*Create a search function
+then call it passing "Jones"*/
+var search = function(lastName) {
+    for (i=0; i<contacts.length; i++) {
+        if (contacts[i].lastName === lastName) {
+            printPerson(contacts[i]);
+        }
+        else return(lastName + " was not found.");
+    }    
+}
+
+search("Jones");
+
+var add = function(firstName, lastName, email, phoneNumber) {
+    contacts[contacts.length] = {
+    firstName: firstName,
+    lastName: lastName,
+    phoneNumber: phoneNumber,
+    email: email
+    }
+};
+    
+add("John", "Smith", "john.smith@example.com", "222 333");
+
+
+list(contacts);
+
+
+**************************************************************
+Introducing Functions
+Programming is similar to baking cakes. Seriously! Imagine you are trying to teach your friend Jane how to bake many different types of cakes.
+
+Each cake takes in different ingredients (ie. inputs). But the 'bake' instructions are always the same. For example:
+
+Pre-heat the oven at 300 degrees
+Mix all the ingredients in a bowl
+Put contents into oven for 30 mins
+And the output will be a different cake each time.
+
+It is tedious to have to repeat to Jane the same 'bake' instructions every time. What if we could just say 'bake' and Jane would know to execute those three steps? That is exactly what a function is!
+
+
+**************************************************************
+
+var number = prompt("Enter a number:");
+
+
+var isEven = function(number) {
+    
+if (number % 2 === 0) {
+        
+	return true;   
+    
+}
+ 
+	else {
+        
+	return false;    
+    }
+
+};
+
+
+isEven();
+
+**************************************************************
+
+var userChoice = prompt("Do you choose rock, paper or scissors?");
+
+var computerChoice = Math.random();
+
+
+if (computerChoice < 0.34) {
+	
+	computerChoice = "rock";
+
+} 
+else if(computerChoice <= 0.67) {
+	
+	computerChoice = "paper";
+
+} 
+else {
+	
+	computerChoice = "scissors";
+
+} 
+console.log("Computer: " + computerChoice);
+
+
+
+var compare = function(choice1, choice2) {
+    
+	if (choice1 == choice2) {
+        
+		return("The result is a tie!");    
+    
+	}   
+    
+	else if (choice1 == "rock") {
+        
+		if (choice2 == "scissors") return("rock wins"); 
+        
+		else return("paper wins");   
+    
+	}
+    
+	else if (choice1 == "paper") {
+        
+		if (choice2 == "scissors") return("scissors wins"); 
+        
+		else return("paper wins");   
+    
+	}
+    
+	else if (choice1 == "scissors") {
+        
+		if (choice2 == "paper") return("scissors wins"); 
+        
+		else return("rock wins");   
+    
+	}
+
+}
+
+
+console.log(compare(userChoice, computerChoice));
+
+***********************************************************************************************
+
+var card = ["2", "3", "4", "5", "6", "7", "8", "9", "T", "J", "Q", "K", "A"];
+var suit = ["s", "c", "h", "d"];
+
+var randomCard1 = Math.random();
+if (randomCard1 < 1/13) randomCard1 = card[0];
+else if (randomCard1 <= 2*1/13) randomCard1 = card[1];
+else if (randomCard1 <= 3*1/13) randomCard1 = card[2];
+else if (randomCard1 <= 4*1/13) randomCard1 = card[3];
+else if (randomCard1 <= 5*1/13) randomCard1 = card[4];
+else if (randomCard1 <= 6*1/13) randomCard1 = card[5];
+else if (randomCard1 <= 7*1/13) randomCard1 = card[6];
+else if (randomCard1 <= 8*1/13) randomCard1 = card[7];
+else if (randomCard1 <= 9*1/13) randomCard1 = card[8];
+else if (randomCard1 <= 10*1/13) randomCard1 = card[9];
+else if (randomCard1 <= 11*1/13) randomCard1 = card[10];
+else if (randomCard1 <= 12*1/13) randomCard1 = card[11];
+else if (randomCard1 <= 1) randomCard1 = card[12];
+
+var randomSuit1 = Math.random();
+if (randomSuit1 < 1/4) randomSuit1 = suit[0];
+else if (randomSuit1 <= 2*1/4) randomSuit1 = suit[1];
+else if (randomSuit1 <= 3*1/4) randomSuit1 = suit[2];
+else if (randomSuit1 <= 1) randomSuit1 = suit[3];
+
+var randomCard2 = Math.random();
+if (randomCard2 < 1/13) randomCard2 = card[0];
+else if (randomCard2 <= 2*1/13) randomCard2 = card[1];
+else if (randomCard2 <= 3*1/13) randomCard2 = card[2];
+else if (randomCard2 <= 4*1/13) randomCard2 = card[3];
+else if (randomCard2 <= 5*1/13) randomCard2 = card[4];
+else if (randomCard2 <= 6*1/13) randomCard2 = card[5];
+else if (randomCard2 <= 7*1/13) randomCard2 = card[6];
+else if (randomCard2 <= 8*1/13) randomCard2 = card[7];
+else if (randomCard2 <= 9*1/13) randomCard2 = card[8];
+else if (randomCard2 <= 10*1/13) randomCard2 = card[9];
+else if (randomCard2 <= 11*1/13) randomCard2 = card[10];
+else if (randomCard2 <= 12*1/13) randomCard2 = card[11];
+else if (randomCard2 <= 1) randomCard2 = card[12];
+
+var randomSuit2 = Math.random();
+if (randomSuit2 < 1/4) randomSuit2 = suit[0];
+else if (randomSuit2 <= 2*1/4) randomSuit2 = suit[1];
+else if (randomSuit2 <= 3*1/4) randomSuit2 = suit[2];
+else if (randomSuit2 <= 1) randomSuit2 = suit[3];
+
+var dealtHand = function(card1, suit1, card2, suit2) {
+    if(card1!=card2 || (card1===card2 && suit1!=suit2))
+        return(card1 + suit1 + card2 + suit2);
+}
+
+document.writeln(dealtHand(randomCard1, randomSuit1, randomCard2, randomSuit2));
+
+***********************************************************************************************
+
+var cities = ["Melbourne", "Amman", "Helsinki", "NYC", "Skopje"];
+
+
+for (var i = 0; i < cities.length; i++) {
+    
+	console.log("I would like to visit " + cities[i]);
+
+}
+***********************************************************************************************
+var count = 0;
+
+
+var loop = function() {
+	
+	while(count<3) {
+		
+		console.log("I'm looping!");
+		
+		count++;
+	}
+
+};
+
+
+loop();
+
+***********************************************************************************************
+How does this code work? Math.floor(Math.random() * 5 + 1);
+
+1. First we use Math.random() to create a random number from 0 up to 1. For example, 0.5
+2. Then we multiply by 5 to make the random number from 0 up to 5. For example, 0.5 * 5 = 2.5
+3. Next we use Math.floor() to round down to a whole number. For example, Math.floor( 2.5 ) = 2
+4. Finally we add 1 to change the range from between 0 and 4 to between 1 and 5 (up to and including 5)
+
+
+***********************************************************************************************
+for (i=1; i<21; i++) {
+    if (i % 3 === 0 && i % 5 === 0) {
+        console.log("FizzBuzz");
+    } 
+    else if (i % 5 === 0) {
+        console.log("Buzz");    
+    }
+    else if (i % 3 === 0) {
+        console.log("Fizz");    
+    }
+    else console.log(i);
+}
+
+***********************************************************************************************
+var answer = prompt("Do you like fishsticks?");
+
+switch(answer) {
+    case "yes":
+        console.log("You are a gay fish!");
+    break;
+    case "no":
+        console.log("Are you sure?");
+    break;
+    case "maybe":
+        console.log("Yes you do!");
+    break;
+    default:
+        console.log("Only a gay fish can't answer...");
+}
+
+***********************************************************************************************
+var movie = prompt("Which movie?");
+
+var getReview = function (movie) {
+    switch(movie) {
+        case "Toy Story 2":
+        return("Great story. Mean prospector.");
+        break;
+        case "Finding Nemo":
+        return("Cool animation, and funny turtles.");
+        break;
+        case "The Lion King":
+        return("Great songs.");
+        break;
+        default: return("I don't know!");
+    }
+};
+
+getReview();
+
+***********************************************************************************************
+
+
+
+***********************************************************************************************
+
+***********************************************************************************************
+
+***********************************************************************************************
+
+***********************************************************************************************
+
+*******************************************************************************************************************************************************************************************
+*********************************************************************************** JQUERY ********************************************************************************************
+*******************************************************************************************************************************************************************************************
+
+<script type='text/javascript' src='script.js'></script>
+
+***********************************************************************************************
+Next, we'll need to start up our jQuery magic using the $(document).ready(); syntax you've seen. It works like this:
+
+- $() says, "hey, jQuery things are about to happen!"
+- Putting document between the parentheses tells us that we're about to work our magic on the HTML document itself.
+- .ready(); is a function, or basic action, in jQuery. It says "hey, I'm going to do stuff as soon as the HTML document is ready!"
+- Whatever goes in .ready()'s parentheses is the jQuery event that occurs as soon as the HTML document is ready.
+
+So,
+
+$(document).ready(something);
+
+says: "when the HTML document is ready, do something!" (We'll show you how to replace something with an action in the next exercise.)
+
+Note that .ready(); ends with a semicolon. This tells jQuery that you're done giving it a command.
+
+------------------------------------------------------
+Functions are the basic unit of action in jQuery. The main entry point of most jQuery applications is a block of code that looks like this:
+
+$(document).ready(function() {
+    Do something
+});
+Let's go through it bit by bit.
+
+- $(document) is a jQuery object. The $() is actually a function in disguise; it turns the document into a jQuery object.
+- .ready() is a type of function; you can think of it as sort of a helper that runs the code inside its parentheses as soon as the HTML document is ready.
+- function(){} is the action that .ready() will perform as soon as the HTML document is loaded. (In the above example, the Do something placeholder is where those actions would go.)
+
+***********************************************************************************************
+BE CAREFUL OF THE NESTING!!! inside .ready() a function is defined function(){}
+
+function() {
+    jQuery magic;
+}
+
++
+
+$(document).ready();
+
+= 
+
+$(document).ready(function() {
+    jQuery magic;
+});
+
+***********************************************************************************************
+$p vs $('p')
+
+$p = $ does nothing. The $ sign just says that in this variable $p there is a p i.e. paragraph HTML selector.
+$('p') = $ here is actually a function which gets passed a 'p' parameter which is a paragraph selector.
+
+***********************************************************************************************
+$(document).ready(function(){
+    $div = $("div");
+    $div.fadeIn("slow");   
+});
+
+***********************************************************************************************
+$(document).ready((function){
+    $("red","pink").fadeTo("fast",1);
+}); 
+
+// IS THE SAME AS
+
+$(document).ready(   
+    (function){$("red","pink").fadeTo("fast",1);}
+); 
+
+***********************************************************************************************
+
+The this keyword refers to the jQuery object you're currently doing something with. 
+
+$(document).ready(function() {
+    $('div').click(function() {
+        $(this).fadeOut('slow');
+    });
+});
+
+***********************************************************************************************
+$(document).ready(function(){
+    $(".pull-me").click(function(){
+        $(".panel").slideToggle("slow");
+    });    
+});
+
+// IS THE SAME AS THIS
+
+$(document).ready(
+    function(){
+        $(".pull-me").click(
+            function(){
+                $(".panel").slideToggle("slow");
+            }
+        );    
+    }
+);
+
+***********************************************************************************************
+$(".info").append("<p>Stuff!</p>");
+
+IS THE SAME AS
+
+$('<p>Stuff!</p>').appendTo('.info');
+
+***********************************************************************************************
+$(document).ready(function(){
+    // THIS IS ALSO VALID
+    /*-$body = $("body");
+    $paragraph = "<p>I am a paragraph</p>";
+    $body.append($paragraph);*/
+
+    $("body").append("<p>I am a paragraph</p>");
+});
+***********************************************************************************************
+.empty() deletes an element's content and all its descendants. For instance, if you .empty() an 'ol', you'll also remove all its 'li's and their text.
+
+.remove(), not only deletes an element's content, but deletes the element itself.
+***********************************************************************************************
+$(document).ready(function(){
+    $("#text").addClass("highlighted");
+});
+
+***********************************************************************************************
+ jQuery includes a .toggleClass() function that does exactly this. 
+If the element it's called on has the class it receives as an input, .toggleClass() removes that class; 
+if the target element doesn't have that class, .toggleClass() adds it.
+***********************************************************************************************
+$("div").height("100px");
+$("div").width("50px");
+$("div").css("background-color","#008800");
+
+$(document).ready(function(){
+    $div = $("div");
+    $div.height(200);
+    $div.width(200);
+    $div.css("border-radius", 10);
+});
+
+***********************************************************************************************
+Finally, we can update the contents of our HTML elements—that is, the bit between the opening and closing tags—using the .html() and .val() functions. <div>CONTENT</div>
+
+.html() can be used to set the contents of the first element match it finds. For instance,
+
+$('div').html();
+will get the HTML contents of the first div it finds, and
+
+$('div').html("I love jQuery!");
+will set the contents of the first div it finds to "I love jQuery!"
+
+.val() is used to get the value of form elements. For example,
+
+$('input:checkbox:checked').val();
+would get the value of the first checked checkbox that jQuery finds.
+
+***********************************************************************************************
+You can set a variable equal to the contents of the input field using .val(), like so:
+
+//Get the value from an input
+var input = $('input[name=checkListItem]').val();
+
+1. Our selector finds our specific input using a css selector on our checkListItem input
+2. We call val() to get the value of the field
+
+$(document).ready(function(){
+    $button = $("#button");
+    $button.click(function(){
+        var toAdd = $("input[name=checkListItem]").val();   
+        $list = $(".list");
+        $appendix = '<div class="item">' + toAdd + '</div>' // ' vs " is important here; also don't put it in () out of habit.
+        $list.append($appendix);
+    });    
+});
+
+***********************************************************************************************
+Remove What's Been Clicked
+Great job! Finally, we want to be able to check items off our list.
+
+You might think we could do this:
+
+$('.item').click(function() {
+    $(this).remove();
+});
+and that's not a bad idea. The problem is that it won't work—jQuery looks for all the .items when the DOM is loaded, so by the time your document is ready, it's already decided there are no .items to .remove(), and your code won't work.
+
+CUSTOM HANDLER CREATOR
+
+For this, we'll need a new event handler: .on(). You can think of .on() as a general handler that takes the event, its selector, and an action as inputs. The syntax looks like this:
+
+$(document).on('event', 'selector', function() {
+    Do something!
+});
+In this case, 'event' will be 'click', 'selector' will be '.item', and the thing we'll want to do is call .remove() on this.
+
+
+***********************************************************************************************
+$(document).ready(function(){
+    $("#button").click(function(){
+        var toAdd = $("input[name=checkListItem]").val();   
+        $(".list").append('<div class="item">' + toAdd + '</div>'); // ' vs " is important here; also don't put it in () out of habit.
+    });
+    $(document).on("click", ".item", function(){ // .on is a custom handler
+        $(this).remove();    // notice the usage of this here.
+    }); 
+});
+
+
+***********************************************************************************************
+
+
+
+***********************************************************************************************
+
+
+
+***********************************************************************************************
+
+
+
+***********************************************************************************************
+
+
+
+***********************************************************************************************

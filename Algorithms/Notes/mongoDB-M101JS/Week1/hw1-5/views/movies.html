@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>Add a movie</title>
+</head>
+
+<body>
+  <form action="/add_movies" method="POST">
+    <p>Enter a movie into the database:</p>
+    <p>Title:
+      <input type="text" name="title" placeholder="Title">
+    </p>
+    <p>Year:
+      <input type="text" name="year" placeholder="Year">
+    </p>
+    <p>IMDB code:
+      <input type="text" name="imdb" placeholder="IMDB">
+    </p>
+    <input type="submit" value="Submit" />
+  </form>
+
+  <h1>Movies:</h1>
+  <ul>
+    {% for movie in movies %}
+      <li><a href="http://www.imdb.com/title/{{ movie.imdb }}">{{ movie.title }}, {{ movie.year }}</a></li>
+    {% endfor %}
+  </ul>
+</body>
+
+</html>

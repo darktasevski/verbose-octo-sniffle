@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>JQuery_1_exercise</title>
+        <meta name="excercise" content="练习">
+        <meta charset="utf-8">
+    </head>
+    <style>
+    </style>
+    <body>
+        <div class="box">
+            child
+        </div>
+
+        <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script type="text/javascript"> 
+            var ccount = 10000;
+            console.log("------!")
+            console.log(window.parent.count)
+            alert(window.parent.count); //获取父中的js变量 
+            alert($("#username", window.parent.document));//获取父中jQuery对象 
+            alert(window.parent.document.getElementByIdx_x('username'));//获取父中DOM对象 
+        </script> 
+    </body>
+</html>
+
+
+

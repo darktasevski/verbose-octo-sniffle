@@ -1,0 +1,46 @@
+{
+	"manifest_version" : 2,
+
+	"name"        : "Protein Tracker",
+	"description" : "Tracks a user's protein totals throughout the day.",
+	"version"     : "1.0",
+
+	"browser_action" :
+	{
+		"default_icon":
+		{
+			"19": "img/icon-pt-19.png",
+			"38": "img/icon-pt-38.png"
+		},
+		"default_title": "Protein Tracker",
+		"default_popup": "popup.html"
+	},
+
+	"options_page" : "options.html",
+
+	"options_ui":
+	{
+		"page"         : "options.html",
+		"chrome_style" : true
+	},
+
+	"background" :
+	{
+		"scripts"    : [ "js/eventPage.js" ],
+		"persistent" : false
+	},
+
+	"permissions" :
+	[
+		"storage",
+		"notifications",
+		"contextMenus"
+	],
+
+	"icons" :
+	{
+		"16"  : "img/icon-pt-16.png",
+		"48"  : "img/icon-pt-48.png",
+		"128" : "img/icon-pt-128.png"
+	}
+}

@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.9/angular-route.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/controllers/users.js"></script>
+        <script src="js/controllers/houses.js"></script>
+        <script src="js/routes/routes.js"></script>
+        <!-- BOOTSTRAP CSS -->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    </head>
+    <body style="padding:50px;" ng-app="myapp">
+        <h1>ng-view</h1>
+        <a ng-href='#/users'>users</a>
+        <a ng-href='#/houses'>houses</a>
+
+        <div ng-view></div>
+
+    </body>
+</html>

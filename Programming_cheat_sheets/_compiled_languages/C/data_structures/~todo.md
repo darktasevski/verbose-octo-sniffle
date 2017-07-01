@@ -1,0 +1,2 @@
+- add sorting algorithms
+- remove spaces from folder names

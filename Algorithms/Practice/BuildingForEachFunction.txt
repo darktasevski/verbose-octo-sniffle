@@ -1,0 +1,22 @@
+myForEach(arr, func);
+
+myForEach(arr, function() {
+  console.log(num);
+});
+
+function myForEach(arr, func) {
+  // Loop through array
+  for (var i = 0; i < arr.length; i++) {
+    // Call func for each item in array
+    func();
+  }
+}
+
+-- Build myForEach as a method
+
+// Adds method on the array prototype
+Array.prototype.myForEach = function(func) {
+  for (var i = 0; i < this.length; i++) {
+    func(this[i]);
+  }
+}

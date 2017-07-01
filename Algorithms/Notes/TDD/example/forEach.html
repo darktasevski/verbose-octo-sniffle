@@ -1,0 +1,75 @@
+<script src="../tinytest.js"></script>
+<script>
+  // Example 1:
+  // forEach([1, 2, 3], function() {
+  //   console.log('hi');
+  // });
+
+  // Example 2:
+  // forEach([1, 2, 3], function(number) {
+  //   console.log(number);
+  // });
+
+  // Example 3: The index of the current element being processed in the array
+  // forEach([1, 2, 3], function(number, index) {
+  //   console.log(index);
+  // });
+
+  // Example 4: The array of the
+  // forEach([1, 2, 3], function(number, index, originalArray) {
+  //   console.log(originalArray);
+  // });
+
+  function forEach(array, callback, optionalThisArg) {
+    var configurableCallback = callback;
+    // If optionalThisArg exists
+    if (optionalThisArg) {
+      // Bind thisArg to callback function
+      configurableCallback = callback.bind(optionalThisArg);
+    }
+
+    for (var i = 0; i < array.length; i++) {
+      configurableCallback(array[i], i, array);
+    };
+  };
+
+  tests({
+
+    'It should run the callback function array.length times': function () {
+      var numberOfTimesCallbackHasRun = 0;
+      forEach([1, 2, 3], function () {
+        numberOfTimesCallbackHasRun++;
+      });
+      eq(numberOfTimesCallbackHasRun, 3);
+    },
+
+    'It should pass in the i-th element as the first argument to the callback': function () {
+      forEach([3], function (ele) {
+        eq(3, ele);
+      });
+    },
+
+    'It should pass in the i-th as the second argument to the callback': function () {
+      forEach([3], function (ele, i) {
+        eq(0, i);
+      });
+    },
+
+    'It should pass in the original array as the third argument to the callback': function () {
+      var testArray = [3];
+      forEach(testArray, function (ele, i, array) {
+        eq(testArray, array);
+      });
+    },
+
+    'It should accept an optional this object': function () {
+      forEach([1], function () {
+        // This should be equal to optionalThisArg
+        // this.description should be equal to 'Configurable this object'.
+        eq(this.description, 'I should be accessible inside the callback');
+      }, { description: 'I should be accessible inside the callback' });
+    }
+
+  });
+
+</script>

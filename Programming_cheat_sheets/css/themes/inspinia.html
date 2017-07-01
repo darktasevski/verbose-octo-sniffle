@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    </head>
+
+    <!-- font awesome cdn -->
+    <!-- to see the icons: https://fortawesome.github.io/Font-Awesome/icons/ -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-aNUYGqSUL9wG/vP7+cWZ5QOM4gsQou3sBfWRr/8S3R1Lv0rysEmnwsRKMbhiQX/O" crossorigin="anonymous">
+
+    <!-- bootstrap -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <style>
+        body {
+            padding: 0px;
+            border: 0px;
+            margin: 0px;
+            font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 26px;
+            font-weight: 100;
+            background-color: #eee;
+
+        }
+
+        p {
+            margin: 0px;
+        }
+
+        .container {
+          display: -webkit-flex; /* Safari */
+          display: flex;
+          padding: 0px; /* because bootstrap messes it up */
+          margin: 0px; /* because bootstrap messes it up */
+        }
+
+        .sidebar {
+            flex-grow: 2;
+            background-color: #34495e;
+        }
+        .page {
+            flex-grow: 8;
+            background-color: #eee;
+            color: #676a6c;
+        }
+
+        .white {
+            background-color: #fff;
+        }
+
+        .padding {
+            padding: 10px;
+        }
+
+        .margin {
+            margin: 10px;
+        }
+
+        .white-font {
+            color: #fff;
+        }
+
+        .gray-font {
+            color: #ddd;
+        }
+
+        .widget-container {
+            background-color: #fff;
+            margin: 10px;
+            flex-grow: 1;
+        }
+
+        .widget-title {
+            border-top: 3px solid #ddd;
+
+            padding: 10px;
+            font-size: 14px;
+            font-weight: 200;
+        }
+
+        .widget-section {
+            border-top: 1px solid #ddd;
+            padding: 10px;
+            font-size: 14px;
+            font-weight: 200;
+        }
+
+        .widget-section-2 {
+            border-top: 1px solid #ddd;
+            padding: 10px;
+            font-size: 14px;
+            font-weight: 200;
+            background-color: #f3f6fb;
+        }
+
+        .small-fat-font {
+            font-size: 14px;
+            font-weight: 200;
+        }
+
+        .sidebar-link {
+            width: 200px;
+            color: #a7b1c2;
+            padding: 10px;
+        }
+
+        .sidebar-link:hover {
+            background-color: #2c3e50;
+        }
+
+        /* OVERRIDING BOOTSTRAP CSS HERE */
+        /*.label {
+            font-size: inherit;
+            font-weight: inherit;
+        }*/
+
+        .btn {
+            font-size: 12px;
+            font-weight: 200;
+        }
+
+    </style>
+    <body>
+        <div class='container'>
+            <div class='sidebar gray-font small-fat-font'>
+                <div class='sidebar-link'>
+                    <p><b>Widgets</b></p>
+                </div>
+
+                <div class='sidebar-link'>
+                    <p>
+                        <i class="fa fa-envira" aria-hidden="true"></i>
+                        <b>Link 1</b>
+                    </p>
+                </div>
+
+                <div class='sidebar-link'>
+                    <p>
+                        <i class="fa fa-area-chart" aria-hidden="true"></i>
+                        <b>Link 1</b>
+                    </p>
+                </div>
+
+                <div class='sidebar-link'>
+                    <p>
+                        <i class="fa fa-archive" aria-hidden="true"></i>
+                        <b>Link 1</b>
+                    </p>
+                </div>
+
+                <div class='sidebar-link'>
+                    <p>
+                        <b>Link 1</b>
+                        <i class="fa fa-angle-left" aria-hidden="true"></i>
+                    </p>
+                </div>
+            </div>
+
+            <div class='page'>
+                <div class='container'>
+                    <div class='padding'>
+                        <p>Header</p>
+                    </div>
+                </div>
+                <div class='container white'>
+                    <div class='padding'>
+                        <p>Content</p>
+                        <button type="button" class="btn btn-default">Default</button>
+                        <button type="button" class="btn btn-primary">Primary</button>
+                        <button type="button" class="btn btn-success">Success</button>
+                        <button type="button" class="btn btn-info">Info</button>
+                        <button type="button" class="btn btn-warning">Warning</button>
+                        <button type="button" class="btn btn-danger">Danger</button>
+                        <button type="button" class="btn btn-link">Link</button>
+                        <p>...</p>
+                        <p>...</p>
+                        <p>...</p>
+
+                        <span class="small-fat-font label label-default">Default Label</span>
+                        <span class="small-fat-font label label-primary">Primary Label</span>
+                        <span class="small-fat-font label label-success">Success Label</span>
+                        <span class="small-fat-font label label-info">Info Label</span>
+                        <span class="small-fat-font label label-warning">Warning Label</span>
+                        <span class="small-fat-font label label-danger">Danger Label</span>
+                    </div>
+                </div>
+                <div class='container'>
+                    <div class='widget-container'>
+                        <div class='widget-title'>
+                            <b>Widget title example</b>
+                            <span class="label label-success pull-right">Success Label</span>
+                            <span class="label label-info pull-right">Info Label</span>
+                        </div>
+                        <div class='widget-section-2'>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
+                            </p>
+                            <button type="button" class="btn btn-default">Button</button>
+                        </div>
+                        <div class='widget-section'>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class='container'>
+                    <div class='widget-container'>
+                        <div class='widget-title'>
+                            <b>Widget title example</b>
+                            <span class="label label-warning pull-right">Warning Label</span>
+                        </div>
+                        <div class='widget-section'>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.</p>
+                        </div>
+                    </div>
+
+                    <div class='widget-container'>
+                        <div class='widget-title'>
+                            <b>Widget title example</b>
+                            <span class="label label-warning pull-right">Warning Label</span>
+                        </div>
+                        <div class='widget-section'>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class='container'>
+                    <div class='widget-container'>
+                        <div class='widget-title'>
+                            <b>Widget title example</b>
+                            <span class="label label-warning pull-right">Warning Label</span>
+                        </div>
+                        <div class='widget-section'>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.</p>
+                        </div>
+                    </div>
+
+                    <div class='widget-container'>
+                        <div class='widget-title'>
+                            <b>Widget title example</b>
+                            <span class="label label-warning pull-right">Warning Label</span>
+                        </div>
+                        <div class='widget-section'>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.</p>
+                        </div>
+                    </div>
+
+                    <div class='widget-container'>
+                        <div class='widget-title'>
+                            <b>Widget title example</b>
+                            <span class="label label-warning pull-right">Warning Label</span>
+                        </div>
+                        <div class='widget-section'>
+                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class='container white'>
+                    <div class='padding small-fat-font'>
+                        <p><b>This is an example of a footer</b></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

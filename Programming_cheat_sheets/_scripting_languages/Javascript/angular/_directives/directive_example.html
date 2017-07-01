@@ -1,0 +1,68 @@
+<script>
+
+    /**
+     * Some links:
+     * https://jsfiddle.net/shidhincr/pJLT8/10/?utm_source=website&utm_medium=embed&utm_campaign=pJLT8
+     * https://www.undefinednull.com/2014/02/11/mastering-the-scope-of-a-directive-in-angularjs/
+     * http://weblogs.asp.net/dwahlin/creating-custom-angularjs-directives-part-2-isolate-scope
+     * 
+     * 
+     * The directive scope:
+     *  - scope: true  ->  The directive gets a new scope, the parent's scope DOES affect the directive's scope
+     *                     but the directive's scope does not affect the parent's scope.
+     *  - scope: false ->  The directive shares the parent's scope! they are mutually affected.
+     * 
+     * - scope: {}     ->  The directive gets a NEW and ISOLATED scope, the scope does not inherite the parent scope properties
+     *                     It is a completely isolated scope.
+     *                     BUT, the scope can access data from the HTML attributes.
+     * - scope: {
+     *       foo: '=', // this is for two-way data binding!  
+     *       bar: '@', // this is for one-way data binding! and it only accepts primitive values ??? 
+     *       baz: '&', // this is for functions 
+     *   }
+     * 
+     * - the use of `scope.apply()`  -> When you are inside a callback that does not belong to Angular, but to a 3rd party library, 
+     *                                  you can call this function to update the bound variables! 
+     */
+    angular.module("app", [])
+    .controller('MainCtrl', function($scope){
+        $scope.items = [
+            {name: 'foo', id: 100, size: 1},
+            {name: 'bar', id: 101, size: 2},
+            {name: 'baz', id: 102, size: 3},
+        ];
+    })
+    .directive('brianDirective', function(){
+        return {
+            restrict: 'A',
+            scope: {
+                widget: '='
+            },
+            link: function(scope, el, attrs, ctrl){
+                scope.widget.size *= 10; 
+                scope.widget.name += '_alt';
+            }
+        }
+    })
+</script>
+
+<div ng-app="app">
+   <div ng-controller='MainCtrl'>
+     <div ng-repeat="widget in items  track by $index">
+         <div brian-directive widget="widget">
+             <p>{{widget.name}} - {{widget.id}} - size: {{widget.size}}</p>
+         </div>
+     </div>
+   </div>
+</div>
+
+
+
+<!--
+RESULT:
+
+foo_alt - 100 - size: 10
+bar_alt - 101 - size: 20
+baz_alt - 102 - size: 30
+
+-->

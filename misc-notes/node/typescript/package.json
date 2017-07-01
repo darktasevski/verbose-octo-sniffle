@@ -1,0 +1,15 @@
+{
+  "name": "tsdemo",
+  "version": "1.0.0",
+  "description": "Typescript introduction example",
+  "main": "greeter.js",
+  "scripts": {
+    "start": "nodemon greeter.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "typescript"
+  ],
+  "author": "",
+  "license": "ISC"
+}

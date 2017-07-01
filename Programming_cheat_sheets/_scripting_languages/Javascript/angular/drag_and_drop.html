@@ -1,0 +1,226 @@
+<!-- 
+file:///C:/Users/prg/Desktop/drag_and_drop_example_angular_april_10_20017/test.html
+-->
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <!-- bootstrap -->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <!-- angular -->
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+        <!-- angular route -->
+        <!-- <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-route.min.js"></script> -->
+        <!-- ui-grid -->
+        <!-- <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.js"></script> -->
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-touch.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-animate.js"></script>
+        <script src="http://ui-grid.info/docs/grunt-scripts/csv.js"></script>
+        <script src="http://ui-grid.info/docs/grunt-scripts/pdfmake.js"></script>
+        <script src="http://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>
+        <script src="http://ui-grid.info/release/ui-grid.js"></script>
+        <!-- <link rel="stylesheet" href="http://ui-grid.info/release/ui-grid.css" type="text/css"> -->
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.0.2/ui-grid.css">
+        <!-- <link rel="stylesheet" href="main.css" type="text/css"> -->
+
+        <style>
+        	.dnd-item{
+        		width: 100px;
+			    height: 50px;
+			    padding: 10px;
+			    margin: 5px;
+        		border: 2px solid #448;
+        	}
+			.dnd-container {
+			    width: 400px;
+			    height: 200px;
+			    padding: 10px;
+			    margin: 5px;
+			    border: 2px solid #484;
+			}
+		</style>
+
+
+        <script>
+            // http://stackoverflow.com/questions/26752030/rootscope-broadcast-vs-scope-emit
+            // https://toddmotto.com/all-about-angulars-emit-broadcast-on-publish-subscribing/
+            
+            
+            //==================================================================================
+            angular.module('myApp', [])
+            .controller('controllerA', ["$scope", function($scope){
+
+                // $scope.test = 123;
+
+				$scope.dragStart = function(event){
+					var item = event.target;
+					// set some data:
+					event.dataTransfer.setData("text", item.id);
+				};
+
+				$scope.dragEnd = function(event){
+					var item = event.target;
+				};
+
+				$scope.drop = function(event){
+					var container = event.target;
+
+					// get the data:
+					var data = event.dataTransfer.getData("text");
+					var item = document.getElementById(data);
+					
+					// action:
+				    container.appendChild(item);
+				};
+
+				$scope.dragOver = function(event){
+					var container = event.target;
+
+					// add validation to drop
+				};
+
+				$scope.dragEnter = function(event){
+					var container = event.target;
+				};
+
+				$scope.dragLeave = function(event){
+					var container = event.target;
+				};
+
+
+            }]) // end of controller
+
+            //======================================
+            .directive('dndItem', function(){
+		        return {
+		            restrict: 'A',
+		            scope: {
+		                dndOnDragStart: '&', // function 
+		                dndOnDragEnd: '&', // function 
+		            },
+		            link: function(scope, el, attrs, controller){
+
+		                // make element draggable!
+		                angular.element(el).attr("draggable", "true");
+
+		                // ondragstart
+		                el.bind("dragstart", function(event){
+		                    scope.dndOnDragStart()(event);
+		                    // event.dataTransfer.setData('text', id);
+		                });
+
+		                // ondragend
+		                el.bind("dragend", function(event){
+		                	 scope.dndOnDragEnd()(event);
+		                });
+		            }
+		        }
+		    })
+
+            //======================================
+            .directive('dndContainer', function($rootScope){ // dnd-drop-container
+		        return {
+		            restrict: 'A',
+		            scope: {
+		                dndOnDrop: '&', // function
+		                dndOnDragOver: '&', // function
+		                dndOnDragEnter: '&', // function
+		                dndOnDragLeave: '&', // function
+		            },
+		            link: function(scope, el, attrs, controller){
+
+		            	// ondragover
+		                el.bind("dragover", function(event){
+		                	
+		                  	if(event.preventDefault){
+		                    	event.preventDefault(); // Necessary. Allows us to drop.
+		                  	}
+
+		                  	scope.dndOnDragOver()(event);
+		                });
+
+		                // ondragenter
+		                el.bind("dragenter", function(event){
+		                	scope.dndOnDragEnter()(event);
+		                });
+
+		                // ondragleave
+		                el.bind("dragleave", function(event){
+		                	scope.dndOnDragLeave()(event);
+		                });
+
+		                // ondrop
+		                el.bind("drop", function(e){
+		                  	
+		                 	if(e.preventDefault){
+		                    	e.preventDefault(); // Necessary. Allows us to drop.
+		                  	}
+
+		                  	if(e.stopPropogation){
+		                    	e.stopPropogation(); // Necessary. Allows us to drop.
+		                  	}
+
+		                  	scope.dndOnDrop()(event);
+
+		                });
+
+		            }
+		        }
+		    });
+
+            
+            
+        </script>
+    </head>
+    <body>
+        <div class='container' ng-app='myApp'>
+        <div ng-controller='controllerA'>
+            <h1>Drag-and-drop</h1>
+            <!-- <p>test: {{test}}</p> -->
+
+            <p>To mix drag-and-drop with angular, we need directives</p>
+            <p><b>HACK</b>: we are passing the function pointer, then in the directive, we are calling the function, passing in the event obj!</p>
+
+            <hr>
+
+			<div id="item1"
+				class="dnd-item"
+				dnd-item 
+				dnd-on-drag-start="dragStart"  
+				dnd-on-drag-end="dragEnd">
+				ITEM1
+			</div>
+
+			<div id="item2"
+				class="dnd-item"
+				dnd-item 
+				dnd-on-drag-start="dragStart"  
+				dnd-on-drag-end="dragEnd">
+				ITEM2
+			</div>
+
+			<div id="container1" 
+				class="dnd-container" 	
+				dnd-container 
+				dnd-on-drop="drop" 
+				dnd-on-drag-over="dragOver" 
+				dnd-on-drag-enter="dragEnter" 
+				dnd-on-drag-leave="dragLeave">
+				CONTAINER1
+			</div>
+
+			<div id="container2" 
+				class="dnd-container" 	
+				dnd-container 
+				dnd-on-drop="drop" 
+				dnd-on-drag-over="dragOver" 
+				dnd-on-drag-enter="dragEnter" 
+				dnd-on-drag-leave="dragLeave">
+				CONTAINER2
+			</div>
+
+        </div>
+    </body>
+</html>

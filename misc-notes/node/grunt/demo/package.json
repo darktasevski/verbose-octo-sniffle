@@ -1,0 +1,17 @@
+{
+  "name": "gruntdemo",
+  "version": "1.0.0",
+  "description": "Grunt Hello World demo example.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Grunt"
+  ],
+  "author": "qiuzhong",
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "^1.0.1"
+  }
+}

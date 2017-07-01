@@ -1,0 +1,33 @@
+Diff Two Arrays 
+
+Compare two arrays and return a new array with any items only found in one of the two given arrays, but not both. In other words, return the symmetric difference of the two arrays.
+
+--
+
+function diffArray(arr1, arr2) {
+  var newArr = [];
+  var indexed;
+  
+  // Uses indexOf function on second array taking elements of first array as parameters by looping through it. If it does not find it, it pushes it into new array
+  for (var i = 0; i < arr1.length; i++) {
+    
+    indexed = arr2.indexOf(arr1[i]);
+    if (indexed == -1) {
+      newArr.push(arr1[i]);
+    }      
+  }
+  
+  // Uses indexOf function on first array taking elements of second array as parameters by looping through it. If not found, it is pushed into new array
+  for (var j = 0; j < arr2.length; j++) {
+    
+    indexed = arr1.indexOf(arr2[j]);
+    if (indexed == -1) {
+      newArr.push(arr2[j]);
+    }
+  }
+  
+  // Same, same; but different.
+  return newArr;
+}
+
+diffArray([1, 2, 4, 3, 5], [1, 2, 3, 5]);

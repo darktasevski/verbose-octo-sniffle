@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+        <script>
+            //------------------------------------------------------------------
+            angular.module('myApp.helper', []) // my app definition
+                .controller('myApp.helper.http', ['$http', function($http){
+                    this.message = 'hello from myApp.helper.http';
+                }])
+                .factory('myApp.helper.grid', [function(){
+                    var obj = {
+                        gridMessage: 'hello from the "myApp.helper.grid" factory'
+                    };
+
+                    return obj;
+                }])
+                .directive('myAppHelperDirective', [function(){ // directives need to be lower-case
+                    // now <myAppHelperDirective></myAppHelperDirective> is available in your HTML
+                    var obj = {
+                        // scope: false, // - if set to false, the directive will use the parent scope (usually a controller scope)
+                                         // - if set to true, the directive will have a scope that is a
+                                         //   child scope of the parent scope (usually a controller scope)
+                                         //   so changes in the parent scope (usually a controller scope) will affect the directive scope
+                                         //   but not vice-versa (changes to the directive scope will not affect the parent scope)
+                                         // - if set to {} the directive gets its own isolated scope
+                                         //   so changes on the directive scope will not affect the parent scope, and vice-versa
+                        restrict: 'E',
+                        template: '<h1>hello from a helper directive!</h1>', // you could use templateUrl: 'templates/myDirective.html'
+                        link: function(scope, el, attrs){
+
+                        }
+                    };
+
+                    return obj;
+                }]);;
+
+            //------------------------------------------------------------------ my app definition
+            angular.module('myApp', ['myApp.helper']) // you can inject other modules in your app!
+                // controllers and directives from the other modules you are injecting in your app
+                // are now available in the HTML
+
+                // services, factories from the other modules you are injecting in your app
+                // are now available to be injected into the controllers and directives of the main app!
+                .controller('applicationCtrl', ['$http', 'myApp.helper.grid', function($http, myApp_helper_grid){
+                    this.message = 'hello from applicationCtrl'
+                    this.messageFromFactoryInAnotherModule = myApp_helper_grid.gridMessage;
+                }])
+
+                .controller('myApp.testCtrl', ['$log', '$timeout', function($log, $timeout){
+                    this.message = 'hello from myApp.testCtrl';
+                    $log.debug('hello from testCtrl'); // just a wrapper for console.log()
+                    $timeout(function(){ // just a wrapper for javascript's timeout
+                        $log.debug('hello from testCtrl');
+                    }, 5000);
+                }])
+                .directive('userRegistration', [function(){ // directives need to be lower-case
+                    // now <user-registration></user-registration> is available in your HTML
+                    var obj = {
+                        restrict: 'E',
+                        template: '<h1>hello from a directive!</h1>',
+                        link: function(scope, el, attrs){
+
+                        }
+                    };
+
+                    return obj;
+                }]);
+            //------------------------------------------------------------------
+
+        </script>
+    </head>
+    <body ng-app='myApp'>
+        <p>Angular App</p>
+
+        <div ng-controller='applicationCtrl as app'>
+            <p>{{app.message}}</p>
+            <p>{{app.messageFromFactoryInAnotherModule}}</p>
+            <user-registration></user-registration>
+            <my-app-helper-directive></my-app-helper-directive>
+        </div>
+
+        <div ng-controller='myApp.helper.http as http'>
+            <p>{{http.message}}</p>
+        </div>
+
+        <div ng-controller='myApp.testCtrl as test'>
+            <p>{{test.message}}</p>
+        </div>
+
+
+    </body>
+</html>
