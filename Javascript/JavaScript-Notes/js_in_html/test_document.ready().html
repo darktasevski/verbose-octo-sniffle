@@ -1,0 +1,56 @@
+<html>
+	<head>
+		<title>
+			Test document.ready()
+		</title>
+        <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+		<!-- A page can't be manipulated safely until the document is "ready." 
+		jQuery detects this state of readiness for you. 
+		Code included inside $( document ).ready() will only run once the page Document Object Model (DOM) is ready for JavaScript code to execute. 
+		Code included inside $( window ).on( "load", function() { ... }) will run once the entire page (images or iframes), 
+		not just the DOM, is ready.-->
+		<script>
+            $(window).on("load",function(){
+                console.log("window is loaded!");
+				var date = new Date();
+				console.log(date.getTime());
+            })
+		</script>
+        <script>
+            $(document).ready(function(){
+                console.log("document ready");
+				var date_1 = new Date();
+				console.log(date_1.getTime())
+            })
+		</script>
+
+        <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"/>
+		<!--如下代码是一个几乎不能能加载的Js,这不会block掉document.read()的执行，
+			但是会block掉window.on("load",function(){})的执行-->
+        <!--<script language="javascript" src="http://chat8.live800.com/live800/chatClient/monitor.js?jid=1277675953&companyID=711668&configID=150129&codeType=custom"></script>-->
+		<style>
+		 	#results li.pass{
+		 		color:green;
+		 	}
+		 	#results li.fail{
+		 		color:red;
+		 	}
+		</style>
+	</head>
+	<body>
+		<ul id= "results"> </ul>
+	</body>
+</html>
+		<style>
+		 	#results li.pass{
+		 		color:green;
+		 	}
+		 	#results li.fail{
+		 		color:red;
+		 	}
+		</style>
+	</head>
+	<body>
+		<ul id= "results"> </ul>
+	</body>
+</html>

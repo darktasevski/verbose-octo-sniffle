@@ -1,0 +1,53 @@
+<!-- file:///C:/Users/prg/Documents/Brian%20Stuff/angular_js_example/index.html -->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ng example</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+		<!--     
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-resource.min.js"></script>
+	    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-route.min.js"></script>
+	    <script src="https://cdn.firebase.com/js/client/2.0.4/firebase.js"></script>
+	    <script src="https://cdn.firebase.com/libs/angularfire/0.9.0/angularfire.min.js"></script> 
+	    -->
+
+		<script src="app.js"></script>
+		<script src="anotherModule.js"></script>
+		<script src="baseCtrl.js"></script>
+		<script src="derivedCtrl.js"></script>
+	</head>
+	<body ng-app='myApp'>
+		<h1>Angular App</h1>
+		<hr />
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<dir ng-controller='FooCtrl as Foo'>
+			<p>FooCtrl</p>
+			<p>{{Foo.message}}</p>
+			<button ng-click='Foo.doSomething()'>Click me</button>
+		</dir>
+		<hr />
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<dir ng-controller='BarCtrl as Bar'>
+			<p>BarCtrl</p>
+			<p>{{Bar.message}}</p>
+		</dir>
+		<hr />
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+		<h2>Nested controller example:</h2>
+		<h3>Base</h3>
+		<dir ng-controller='BaseCtrl as base'>
+			<p>baseCtrl</p>
+			<p>{{base.message}}</p>
+
+			<h3>Derived</h3>
+			<dir ng-controller='DerivedCtrl as derived'>
+				<p>derivedCtrl</p>
+				<p>{{derived.message}}</p>
+				<p>{{base.message}} <--------- </p>
+			</dir>
+		</dir>
+		<hr />
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	</body>
+</html>

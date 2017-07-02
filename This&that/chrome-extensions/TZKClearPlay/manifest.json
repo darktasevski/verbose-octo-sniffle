@@ -1,0 +1,44 @@
+{
+	"manifest_version" : 2,
+
+	"name"        : "TZK ClearPlay",
+	"description" : "Cleans up the language on the dark serial The Zombie Knight",
+	"version"     : "1.0",
+
+	"page_action" :
+	{
+		"default_icon":
+		{
+			"19": "img/sword-19.png",
+			"38": "img/sword-38.png"
+		},
+		"default_title": "TZK ClearPlay"
+	},
+
+	"background" :
+	{
+		"scripts"    : [ "/js/events.js" ],
+		"persistent" : false
+	},
+
+	"content_scripts" :
+	[
+		{
+			"matches" : [ "http://thezombieknight.blogspot.com/*" ],
+			"js"      : [ "/js/jquery.min.js", "/js/clearplay.js" ]
+		}
+	],
+
+	"permissions" :
+	[
+		"tabs",
+		"http://thezombieknight.blogspot.com/*"
+	],
+
+	"icons" :
+	{
+		"16"  : "img/sword-16.png",
+		"48"  : "img/sword-48.png",
+		"128" : "img/sword-128.png"
+	}
+}

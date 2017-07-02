@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>JQuery_1_exercise</title>
+        <meta name="jquery_excercise" content="Jquery & JavaScript">
+        <meta charset="utf-8">
+    </head>
+    <style>
+    </style>
+    <body>
+        <div class="box">
+            <p>孤帆远影碧空尽</p>
+            <p>唯见长江天际流</p>
+        </div>
+
+        <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script>
+            window.onload = function(){
+                var items = document.getElementsByTagName("p");
+                for(var i = 0;i<items.length;i++){
+                    items[i].onclick = function(){
+                            alert("you are clicking the"+ i +"button")
+                        }
+                }
+            }
+        </script>
+    </body>
+</html>

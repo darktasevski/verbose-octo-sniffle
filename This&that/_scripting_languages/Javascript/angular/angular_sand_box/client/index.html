@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TEST</title>
+        <!-- css -->
+        <link rel="stylesheet" type="text/css" href="css/application.css">
+
+        <!-- vendors -->
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.min.js"></script>
+
+        <!--
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-animate.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-cookies.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-resource.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-sanitize.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-touch.min.js"></script>
+        -->
+
+        <!-- app -->
+        <script src="js/app/app.js"></script>
+        <!-- controllers -->
+        <script src="js/app/controllers/applicationController.js"></script>
+        <script src="js/app/controllers/usersController.js"></script>
+        <!-- directives -->
+        <script src="js/app/directives/userInfo.js"></script>
+        <!-- services -->
+        <!-- factories -->
+        <script src="js/app/services/factories/myFactory.js"></script>
+
+        <!-- routes -->
+        <script src="js/app/routes/routes.js"></script>
+
+    </head>
+    <body>
+        <div ng-app='myApp'>
+            <div ng-controller='applicationController as appCtrl'>
+                <p>{{appCtrl.rootUrl}}</p>
+                <p>hello</p>
+                <!-- use directives as 'partilas' -->
+
+
+                <div ng-controller='usersController as usersCtrl'>
+                    <input type='text' ng-model='usersCtrl.myModel' required></input>
+                    <input type='email' ng-model='usersCtrl.myEmail' required></input>
+                    <input type='url' ng-model='usersCtrl.myUrl' required></input>
+                    <input type='number' ng-model='usersCtrl.myNum' min='3' max='20' required></input>
+                    <p>{{ usersCtrl.myModel }}</p>
+                    <p>FOO = {{usersCtrl.foo}}. {{ 400 | currency }}</p>
+                    <button ng-click='usersCtrl.getContact()'>click me</button>
+
+                    <!-- directive -->
+                    <user-info name='brian' age='27' my-name-parameter="usersCtrl.myModel" my-email-parameter="usersCtrl.myEmail"></user-info>
+
+                    <div ng-view></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

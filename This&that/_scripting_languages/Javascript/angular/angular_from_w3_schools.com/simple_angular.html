@@ -1,0 +1,20 @@
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+
+
+
+
+<script>
+  function userController($scope) {
+    $scope.hello = 'YESSSS';
+  };
+</script>
+
+
+
+
+<div ng-app="">
+  will it work?
+  <div ng-controller="userController">
+    <p>{{hello}}</p>
+  </div>
+</div>

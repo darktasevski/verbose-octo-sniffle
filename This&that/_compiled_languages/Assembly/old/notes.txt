@@ -1,0 +1,7 @@
+An assembly program can be divided into three sections:
+
+The data section
+
+The bss section
+
+The text section

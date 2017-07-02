@@ -1,0 +1,17 @@
+# grunt tutorial
+# https://www.youtube.com/watch?v=TMKj0BxzVgw
+
+# http://gruntjs.com/sample-gruntfile
+
+$ npm install -g grunt-cli # commandline interface
+
+$ npm install -S grunt # to save it in the node_modules
+
+$ npm init # to generate your package.json file
+
+$ touch Gruntfile.js
+
+
+$ npm instal grunt-contrib-concat --save-dev
+$ npm instal grunt-contrib-coffee --save-dev
+$ npm instal grunt-contrib-sass --save-dev

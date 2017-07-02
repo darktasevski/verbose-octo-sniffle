@@ -1,0 +1,7 @@
+- create an ec2 instance at AWS and get the private key (the .pem file)
+
+# change permissions on the 
+$ chmod 400  ~/Desktop/myTest.pem
+
+# login to your instance from your computer
+$ ssh ubuntu@35.164.78.15 -i ~/Desktop/myTest.pem

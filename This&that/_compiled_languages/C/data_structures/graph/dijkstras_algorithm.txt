@@ -1,0 +1,14 @@
+# This was NOT checked, it could be wrong...
+
+Dijkstras - find the shortest distance betwen all vertices to source:
+
+1. Use a minHeap
+2. The nodes need to have a 'distance' property/field
+3. Assing 'INFINITY' to the 'distance' property/field of all nodes, 
+   and the SOURCE node to start assign ZERO to the 'distance' property/field
+4. Use two arrays for 'visited' and 'unvisited' nodes
+5. Get the first node of the 'unvisited' array and add it to the 'visited' array
+6. Update the 'distance' property/field of the NEIGHBOR nodes of the CURRENT node to 
+   the sum of the CURRENT node's 'distance' property/field plus the neighbor's 'distance' property/field IF 
+   the neighbor's 'distance' property/field is grater then the result.   
+   (each current node will have many neighbours)

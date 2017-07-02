@@ -1,0 +1,70 @@
+<html>
+
+    <head>
+        <title>JQuery_1_exercise</title>
+        <meta name="excercise" content="练习">
+        <meta charset="utf-8">
+    </head>
+    <style>
+        .current{
+            display: block;
+        }
+        .level2{
+            display: none;
+        }
+        
+    </style>
+    <body>
+        <div class="box">
+            <ul class="menu">
+                <li class="level1">
+                    <a href="#none">衬衫</a>
+                    <ul class="level2">
+                        <li><a href="#none">短袖衬衫</a></li>
+                        <li><a href="#none">长袖衬衫</a></li>
+                        <li><a href="#none">短袖T恤</a></li>
+                        <li><a href="#none">长袖T恤</a></li>
+                    </ul>
+                </li>
+                <li class="level1">
+                    <a href="#none">卫衣</a>
+                    <ul class="level2">
+                        <li><a href="#none">开襟卫衣</a></li>
+                        <li><a href="#none">运动卫衣</a></li>
+                        <li><a href="#none">套头卫衣</a></li>
+                        <li><a href="#none">童装卫衣</a></li>
+                    </ul>
+                </li>
+                <li class="level1">
+                    <a href="#none">衬衫</a>
+                    <ul class="level2">
+                        <li><a href="#none">短裤</a></li>
+                        <li><a href="#none">休闲裤</a></li>
+                        <li><a href="#none">牛仔裤</a></li>
+                        <li><a href="#none">免烫卡其裤</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script>
+            $(function(){
+                $(".level1>a").click(function(){
+                    //一行链式法则的operation实现导航栏。
+                    //添加current class
+                    $(this).addClass("current")
+                            //兄弟元素显示
+                        .next().show()
+                        //父亲的兄弟元素（不在本分支）去掉currentClass
+                        .parent().siblings().children("a").removeClass("current")
+                        //next()隐藏
+                        .next().hide();
+                    //返回false
+                    return false;
+                })
+            })
+
+        </script>
+    </body>
+</html>

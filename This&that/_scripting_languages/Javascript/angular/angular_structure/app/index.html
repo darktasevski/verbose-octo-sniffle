@@ -1,0 +1,57 @@
+<!-- file:///Users/brianspinos777/Desktop/angular_structure/app/index.html -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+
+        <!-- bootstrap -->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+        <!-- angular -->
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+
+        <!-- angular route -->
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-route.min.js"></script>
+
+        <!-- myApp -->
+        <script src="app.js"></script>
+
+        <!-- the root folder is the `app` folder -->
+
+        <!-- controllers -->
+        <script src="controllers/applicationController.js"></script>
+        <script src="controllers/users/usersIndexController.js"></script>
+
+        <!-- directives -->
+        <script src="directives/users/usersIndexDirective.js"></script>
+        <script src="directives/users/usersInfoDirective.js"></script>
+
+        <!-- constants -->
+
+        <!-- filters -->
+
+        <!-- models -->
+
+        <!-- services -->
+
+        <!-- routes -->
+        <script src="routes/routes.js"></script>
+
+    </head>
+    <body>
+        <div class='container' ng-app='myApp' ng-controller='applicationController'>
+            <div ng-controller='usersIndexController'>
+                <users-index-directive></users-index-directive>
+
+
+
+
+            </div>
+
+            <hr />
+            <h1>VIEW:</h1>
+            <div ng-view></div>
+        </div>
+    </body>
+</html>

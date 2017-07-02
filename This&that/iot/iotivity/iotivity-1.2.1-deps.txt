@@ -1,0 +1,18 @@
+scons:
+1. Download pip-<VERSION>.tar.gz
+2. Run: 
+tar -xvf pip-9.0.1.tar.gz
+cd pip-9.0.1/
+sudo python setup.py install
+sudo python -m pip --proxy child-prc.intel.com:913 install --upgrade setuptools
+sudo python -m pip --proxy child-prc.intel.com:913 install --egg scons
+
+iotivity:
+cd iotivity-1.2.1
+scons --help
+git clone https://github.com/01org/tinycbor.git extlibs/tinycbor/tinycbor -b v0.4
+libuuid-devel
+glib2-devel
+sqlite-devel
+libcurl-devel
+scons --help

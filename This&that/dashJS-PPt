@@ -1,0 +1,76 @@
+1) Introduction to MPEG-DASH
+Nirmal Patel
+
+2) Overview
+what is Dash ? how it is different from other streaming technology ?
+Browser Compatibility
+MSE API
+DASH library -- dash.js
+media representation description
+
+3) MPEG-DASH
+    Microsoft Smooth Streaming
+    Http Live Streaming
+    Http Dynamic Streaming
+
+    Reference
+    =========
+    MPEG ==> Moving (Motion)Picture Expert Group ==> An international standard for encoding and compressing video images.
+    MP4 ==> MPEG4 
+
+    H.264 ==> MPEG4 part10 (AVC) advance video coding ==> video compression standard ==> aim is to  provide good video quality at lowe bitrates ==> also allowed the standards to be applied to wide variety of standards and networks  and systems including low/high bitrate , low/high resolution video , broadcast etc
+    Currently there are 3 major vendor-centric streaming formats (all takes H.264 as input)
+
+4) DASH JS
+   built on top of MSE
+   so work with MSE supported browsers.
+   
+
+Dynamic Adaptive Streaming over HTTP (DASH) also called MPEG-DASH 
+MPEG-DASH is the first adaptive bit-rate HTTP-based streaming solution that is an international standard (ISO/IEC 23009-1)
+
+Dash.js ==> A JavaScript-based library which enables DASH playback via HTML5
+
+built on top of Media Source Extension (MSE) API
+so all the browsers which are currently providing MSE support, dash will work in those.
+
+
+
+Agnostic, in an information technology (IT) context, refers to something that is generalized so that it is interoperable among various systems. The term can refer not only to software and hardware, but also to business processes or practices.
+
+
+
+
+Reference site::
+http://wolfcrow.com/blog/what-is-mpeg-dash/
+https://bitmovin.com/dynamic-adaptive-streaming-http-mpeg-dash/
+https://www.jwplayer.com/blog/tag/bitrate_switching/
+https://support.jwplayer.com/customer/portal/articles/1430240-adaptive-streaming
+https://www.brendanlong.com/the-structure-of-an-mpeg-dash-mpd.html
+http://mpeg.chiariglione.org/standards/mpeg-dash/media-presentation-description-and-segment-formats
+http://www.streamingmedia.com/Articles/Editorial/What-Is-.../What-is-MPEG-DASH-79041.aspx
+1) VOD OR Live streaming ?
+
+2) how to do live streaming ?
+
+3) which are format supported by DASH js ?
+
+4) what is m3u8 file ?
+
+
+5) difference between plugins and Extension ? 
+
+plugins are independent of the browser. they are compiled, loadable mouses which can work outside browser space.
+most common example is Flash and Java ("subport" or "canvas")
+
+extension are written mostly in JavaScript or XUL. since the extension act as part of browser, they have wider privilages in a web page.
+
+6) difference between codec and file format ?
+    codec is compress and decompress a digital media file such as a video or song.
+    file format is like container which hold that codec data.
+
+
+add few function of Dash.js library
+dash js used in market youtube netflix 
+media players like jwplayer bitmovin 
+clappr jplayer shaka etc open source

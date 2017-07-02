@@ -1,0 +1,26 @@
+Objective
+Write code for following requirement in any preferred language, including, .Net, Java, Objective-C, Swift, PHP, Javascript, Python, or any other popular language.
+
+Rules
+
+Code will be checked against required functionalities.
+Please submit your test strategy along with the code.
+Code will be reviewed against following parameters:
+Readability (proper comments, naming convention. For complex feature, how code is simplified)
+Extendibility (implementation is done by thinking for the future requirements)
+Troubleshooting (how logging is implemented, exception handling is managed)
+Code Submission Date: 29th June 2017
+Entries to send: Upload code package on http://owncloud.azilen.com/, generate and share the link to niket@azilen.com  with subject line: “Code Competition June 2017”
+
+Requirements
+
+Requirement is to select random players from cricket team, which fulfil following requirements.
+
+In the system, there are 5 cricket teams. In each team, two group of players exist:
+Group A (primary) consists of 16 players.
+Group B (substitute) consists of 8 players.
+
+1. One player of group B should be assigned to two players of group A randomly.
+2. System to generate 100 set of players (one primary from group A and another substitute from group B) randomly from these 5 teams where
+a. Against the player of group A, player of group B (which is already mapped) should be selected.
+b. All 100 set should be unique in nature.
