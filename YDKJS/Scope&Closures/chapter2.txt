@@ -1,0 +1,18 @@
+What is Scope?
+-a set of rules that govern how the Engine can look up variable by its
+name, and find it in either the current scope or in any of the nested scopes
+it is contained within.
+
+#Lex-time
+
+Lexical scope is scope that is defined at lexing time.
+Lexical scope is based on where variables and blocks of scopes are authored,
+by a programmer, at write time, and thus us set in stone by the time it has
+finished lexing.(other name is static scope).
+
+#Review
+Lexical scope means that scope is defined by author-time decisions of where
+functions are declared.
+The lexing phase of compilation is essentially able to know where and how all
+identifiers are declared, and thus predict how they will be looked-up during
+execution.

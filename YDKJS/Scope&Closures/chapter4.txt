@@ -1,0 +1,53 @@
+#Hoisting
+Any variable declared within a scope is attached to that scope.
+
+JS engine will compile code before executing it.
+part of the compilation was to find and associate all declarations with their
+appropriate scopes.
+
+declarations are processed first, both variables and functions, before
+any of the code is executed.
+
+when you see "var a = 2;", you see one statement, but JS sees two statements:
+"var a;" and "a = 2;"
+the first statement is processed during the compilation process.
+the second statement is left in place for the execution phase.
+
+This is called Hoisting.
+
+Hoisting is per-scope.
+
+foo();
+
+function foo() {
+	console.log( a ); // undefined
+
+	var a = 2;
+}
+looks like
+
+function foo() {
+	var a;
+
+	console.log( a ); // undefined
+
+	a = 2;
+}
+
+foo();
+
+function expressions are not hoisted since it is dealt with during execution
+time.
+
+**functions declarations are hoisted first, then variable declarations.
+
+#Review
+
+important to think of JS as two phase:
+1) compiler-phase,
+2) execution-phase.
+
+function and variable declarations are processed during compilation phase,
+before the execution phase.
+
+be careful about duplicate declarations.

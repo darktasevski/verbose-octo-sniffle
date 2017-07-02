@@ -1,0 +1,138 @@
+Where do variables live? Where are they stored? how does our program find them
+when we need them?
+
+These questions speak to the need for a well-defined set of rules for storing
+variables in some location, and for finding those variables at a later time.
+We'll call that set of rules: Scope.
+
+#Compiler Theory
+
+compilation consists of,
+
+1) Tokenizing, or Lexing
+
+  breaking up a string of characters into meaningful chunks, called tokens.
+
+  *tokenizing vs lexing = stateless vs stateful
+
+2) Parsing
+
+  taking a stream(array) of tokens and turning it into a tree, which represents
+  the grammatical structure of the program. AST = Abstract Syntax Tree.
+
+3) Code-Generation
+
+  Process of turning AST into executable code.
+
+JS snippets are compiled right before it is executed.
+
+//---------------------------------------------------------------------------//
+
+#Understanding Scope
+
+executing var a = 2; involves
+
+  1) Engine: responsible for start to finish compilation and execution of our
+  JS program.
+
+  2) Compiler: handles parsing and code generation
+
+  3) Scope: maintains a look-up list of declared variables and enforces
+  a set of rules at to how these are accessible to currently executing code.
+
+Compiler lexes, and parses code into AST, and when it gets to code-generation,
+
+  when it gets to "var a" compiler checks scope. (if declared already, ignore,
+  if not, tell scope to declare one for the current scope.)
+  then the compiler produces code for "a = 2" assignment for the engine to
+  execute.
+  the code engine runs will first check scope for variable a(if variable
+  exists, then assigns 2 into a, if not, throw un error.)
+
+To summarize: First, Compiler declares a variable (if not already declared
+in current Scope), then, when executing, Engine looks up the variable in Scope
+and assign to it, if found.
+
+**LHS look-up: find the variable container itself for assignment(target)
+**RHS look-up: retrieve the value(source)
+
+ex.
+
+function foo(a) {
+	console.log( a ); // 2
+}
+
+foo( 2 );
+
+RHS: foo(..), a(in console.log)
+LHS: a(parameter)
+
+**not foo in the function declaration. variable declaration and function value
+definition is handled by compiler during code-generation. therefore when
+engine is executing code, there is no need for the Engine to assign the
+function value to variable foo.
+
+Quiz.
+
+function foo(a) {
+	var b = a;
+	return a + b;
+}
+
+var c = foo( 2 );
+
+have a conversation as Engine, and identify LHS, and RHS
+
+Engine: I have LHS reference for 'c', ever heard of it?
+
+Scope:
+
+LHS: a, var b, var c
+RHS: a, a, b, foo
+
+//---------------------------------------------------------------------------//
+
+#Nested Scope
+
+If a variable cannot be found in the immediate scope, Engine consults the next
+outer scope, continuing until the global scope.
+
+ex.
+function foo(a) {
+	console.log( a + b );
+}
+
+var b = 2;
+
+foo( 2 ); // 4
+
+Engine: hey scope of foo, I have RHS for b, ever heard of it?
+Scope: nope, look elsewhere.
+Engine: hey outer scope of foo(global scope), I have RHS for b, ever heard?
+Scope: yup, here ya go.
+
+Resolve RHS and LHS with scope look-up chain.
+
+//---------------------------------------------------------------------------//
+
+#Errors
+
+RHS and LHS behaves differently when a variable cannot be found in any consulted
+scopes.
+
+RHS: ReferenceError
+LHS: the global scope makes declares the variable and hands it to the Engine.
+
+in strict mode, both throws ReferenceError.
+
+#Review
+
+RHS: looking up for retrieving value
+LHS: looking up for assigning value
+
+LHS results from assignment. (= or function parameter)
+
+var a = 2;
+
+first: var a (declaration in that scope, happens before code execution)
+second: a = 2; (assignment)

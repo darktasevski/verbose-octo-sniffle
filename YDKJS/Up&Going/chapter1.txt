@@ -1,0 +1,269 @@
+#Conditionals
+
+to make a decision, you need to first consult the state.
+
+different ways to express conditionals
+
+1) if-statement ("If this condition is true, do the following...")
+
+ex.
+var bank_balance = 302.13;
+var amount = 99.99;
+
+if (amount < bank_balance) {
+	console.log( "I want to buy this phone!" );
+}
+
+if statement requires a boolean expression in between parentheses.
+
+you can provide an alternative if the condition isn't true, called else clause
+
+ex.
+const ACCESSORY_PRICE = 9.99;
+
+var bank_balance = 302.13;
+var amount = 99.99;
+
+amount = amount * 2;
+
+// can we afford the extra purchase?
+if ( amount < bank_balance ) {
+	console.log( "I'll take the accessory!" );
+	amount = amount + ACCESSORY_PRICE;
+}
+// otherwise:
+else {
+	console.log( "No, thanks." );
+}
+
+values that aren't already of an expected type are often coerced to that type.
+pass something other than boolean into the if-statement's condition, it will
+be coerced into boolean.
+
+coerced "falsy" : 0, "",
+coerced "truthy" : anything other than "falsy"
+
+2) switch statmement
+
+switch statment can be used as a shorthand for series of if-else statements
+
+3) Loops
+
+Loops use conditionals to either keep going or stop.
+
+//----------------------------------------------------------------------------//
+
+#Loops
+
+repeating a set of actions that are in {} until a certain condition fails
+in other words, repeating only when the condition holds.
+
+loops can take different forms but satisfies this basic behavior
+
+a loop includes a test condition, as well as a block.
+each time the block executes, that's called an iteration.
+
+while vs do while
+
+the only difference is whether the first iteration is ran after checking the
+conditions or not.
+
+do while:                 while
+                        check condition  <--- only difference
+1st iteration           1st iteration
+check condition         check condition
+2nd iteration           2nd iteration
+...                     ...
+
+if the condition is false to begin with, do while will run once, but while will
+not run
+
+Sometimes you are looping for the intended purpose of counting a certain set of
+numbers, like from 0 to 9 (ten numbers). You can do that by setting a loop
+iteration variable like i at value 0 and incrementing it by 1 each iteration.
+
+programming languages almost always count from 0.
+
+The conditional is tested on each iteration, much as if there is an implied if
+statement inside the loop.
+
+you can break out of a loop with break statement.
+
+ex.
+var i = 0;
+
+// a `while..true` loop would run forever, right?
+while (true) {
+	// stop the loop?
+	if ((i <= 9) === false) {
+		break;
+	}
+
+	console.log( i );
+	i = i + 1;
+}
+// 0 1 2 3 4 5 6 7 8 9
+
+ex.
+for (var i = 0; i <= 9; i = i + 1) {
+	console.log( i );
+}
+// 0 1 2 3 4 5 6 7 8 9
+
+for loop has initialization clause, conditional test clause, and update clause.
+
+The "loop until a condition fails" concept holds no matter what the form of the
+loop.
+
+//----------------------------------------------------------------------------//
+
+#Functions
+
+set of instructions defined once and used over and over again.
+
+ex. cash register vs calculator
+
+A function is generally a named section of code that can be 'called' by name.
+
+ex.
+
+function printAmount() {
+	console.log( amount.toFixed( 2 ) );
+}
+
+var amount = 99.99;
+
+printAmount(); // "99.99"
+
+amount = amount * 2;
+
+printAmount(); // "199.98"
+
+functions can optionally take parameters and return a value.
+
+functions are used for code that you plan to use mutiple times, but often
+it is used to organize related bits of code into named collections, even if
+you plan to call them once.
+
+ex.
+const TAX_RATE = 0.08;
+
+function calculateFinalPurchaseAmount(amt) {
+	// calculate the new amount with the tax
+	amt += (amt * TAX_RATE);
+
+	// return the new amount
+	return amt;
+}
+
+var amount = 99.99;
+
+amount = calculateFinalPurchaseAmount( amount );
+
+console.log( amount.toFixed(2) );
+
+even though calculateFinalPurchaseAmount function is called once, abstracting
+away its behavior makes the code that uses its logic much cleaner.
+
+//----------------------------------------------------------------------------//
+
+#Scope
+
+dictionary definition: The extent of the area or subject matter that something deals with or to
+which it is relevant.
+
+Scope is basically a collection of variables as well as the rules for how those
+variables are accessed by name.
+
+each function gets its own scope. and only code inside that function can access
+that function's scoped variables
+
+a variable name has to be unique within the same scope, but same variable name
+can appear in different scopes.
+
+ex.
+function one() {
+	// this `a` only belongs to the `one()` function
+	var a = 1;
+	console.log( a );
+}
+
+function two() {
+	// this `a` only belongs to the `two()` function
+	var a = 2;
+	console.log( a );
+}
+
+one();		// 1
+two();		// 2
+
+a scope can be nested in another scope.
+
+the inner scope can access the outer scope's variables, but not the other way
+around.
+
+ex.
+function outer() {
+	var a = 1;
+
+	function inner() {
+		var b = 2;
+
+		// we can access both `a` and `b` here
+		console.log( a + b );	// 3
+	}
+
+	inner();
+
+	// we can only access `a` here
+	console.log( a );			// 1
+}
+
+outer();
+
+lexical scope: code in one scope can access variable in that scope or any scope
+outside of it.
+
+//---------------------------------------------------------------------------//
+
+#Practice
+
+const TAX_RATE = 0.08;
+const PHONE_PRICE = 920.99;
+const MENTAL_THRESHOLD = 3000;
+const ACCESSORY_PRICE = 19.99;
+
+var bankBalance = prompt("How much do you have in your bank?");
+var amount = 0;
+
+while(amount < bankBalance) {
+  amount += PHONE_PRICE;
+
+  if (amount < MENTAL_THRESHOLD) {
+    amount += ACCESSORY_PRICE;
+  }
+}
+
+amount = (amount + (amount * TAX_RATE)).toFixed(2);
+console.log("Total: " + "$" + amount);
+
+if (amount > bankBalance) {
+  console.log("you can't afford this..");
+} else {
+  console.log('you can afford this!');
+}
+
+//---------------------------------------------------------------------------//
+
+#Review
+
+-use operators to perform actions on values
+-you need values and type to perform different kinds of actions like math on
+numbers or outputing with strings
+-you need variables to store data (aka. state) during your program's execution
+-conditionals like if-statments,or switch statements or loop conditions
+ for decisions
+-loops for repeating tasks until condition fails
+-functions to organize code into logical and reusable chunks
+-comments allow code to be more readable, which means easier to understand,
+maintain, and fix.

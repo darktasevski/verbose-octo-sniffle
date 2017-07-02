@@ -1,0 +1,268 @@
+Scope consists of a series of "bubbles" that each act as a container or bucket,
+in which identifiers(variables, functions) are declared. These bubbles nest
+inside each other, and this nesting is defined at author-time(write time).
+
+#Scope from Functions
+Each function you declare creates a bubble for itself.
+
+any variables that are outside of current scope is accessible but they are
+hidden if it is inside non parent scope.
+
+//---------------------------------------------------------------------------//
+#Hiding In Plain Scope
+
+wrapping a section of code with function wrapper 'hides' the code.
+what it does is any declaration in that section of code will now be tied to
+the scope of the new wrapping function, so it the variables won't be accessible
+from the previously enclosing scope.
+
+why?
+
+"Principle of Least Privilege", "Least Authority", or "Least Exposure":
+expose only what is minimally necessary and 'hide' everything else.
+
+ex.
+function doSomething(a) {
+	b = a + doSomethingElse( a * 2 );
+
+	console.log( b * 3 );
+}
+
+function doSomethingElse(a) {
+	return a - 1;
+}
+
+var b;
+
+doSomething( 2 ); // 15
+
+this exposes unnecessary details of doSomethingElse and var b.
+
+more appropriate way would be
+
+ex.
+function doSomething(a) {
+  function doSomethingElse(a) {
+    return a - 1;
+  }
+  var b;
+
+  b = a + doSomethingElse( a * 2 );
+
+  console.log( b * 3 );
+}
+
+Now b and doSomethingElse are not accessible to any outside influence.
+
+#Collision Avoidance
+
+collision ex.
+
+function foo() {
+  function bar(a) {
+    i = 3;
+    console.log( a + i );
+  }
+  for (var i = 0; i < 10; i++) {
+    bar(i * 2);
+  }
+}
+
+var i = 3; would fix the problem because it would hide the i from the scope
+of foo.
+
+#Global Namespace
+
+it is common for name collision to happen at global scope, so libraries use
+an object with a unique name and use the properties of that object to store
+the values.
+
+ex.
+
+var MyReallyCoolLibrary = {
+	awesome: "stuff",
+	doSomething: function() {
+		// ...
+	},
+	doAnotherThing: function() {
+		// ...
+	}
+};
+
+//---------------------------------------------------------------------------//
+#Functions as Scopes
+
+var a = 2;
+
+function foo() { // <-- insert this
+
+	var a = 3;
+	console.log( a ); // 3
+
+} // <-- and this
+foo(); // <-- and this
+
+console.log( a ); // 2
+
+this method of hiding pollutes the global scope.
+we have to explicitly execute foo()
+
+better way is
+
+var a = 2;
+
+(function foo(){ // <-- insert this
+
+	var a = 3;
+	console.log( a ); // 3
+
+})(); // <-- and this
+
+console.log( a ); // 2
+
+now the identifier 'foo' does not belong to the global scope.
+function declaration vs function expression:
+declaration statement starts with function keyword in the beginning. otherwise,
+it's a function expression.
+
+#Anonymous vs Named
+
+function expressions can be anon. but not declaration.
+
+drawbacks of anon. func.
+
+1) difficult to trace, which makes debugging difficult.
+2) self-reference issues
+3) descriptive name helps self-document code.
+
+providing name for function expression resolves these issues.
+
+#IIFE (Immediately Invoked Function Expression)
+
+-name it IIFE for aforementioned benefits
+ex.
+var a = 2;
+
+(function IIFE(){
+
+	var a = 3;
+	console.log( a ); // 3
+
+})();
+
+console.log( a ); // 2
+
+-you can also pass in an argument
+
+var a = 2;
+
+(function IIFE( global ){
+
+	var a = 3;
+	console.log( a ); // 3
+	console.log( global.a ); // 2
+
+})( window );
+
+console.log( a ); // 2
+
+use it to safeguard against accidental overwrite of 'undefined' identifier
+
+ex.
+undefined = true; // setting a land-mine for other code! avoid!
+
+(function IIFE( undefined ){
+
+	var a;
+	if (a === undefined) {
+		console.log( "Undefined is safe here!" );
+	}
+
+})();
+
+//---------------------------------------------------------------------------//
+#Blocks As Scopes
+
+variables that are declared in if-statement, for loops, while loops belong to
+the outer scopes, so it pollutes the scope and goes against the principle of
+least exposure. It essentially leaves it up to the programmer to not use the
+same identifier name.
+
+block scope pre-ES6: 'with', catch block in 'try/catch'
+
+ex.
+try {
+	undefined(); // illegal operation to force an exception!
+}
+catch (err) {
+	console.log( err ); // works!
+}
+
+console.log( err ); // ReferenceError: `err` not found
+
+**let
+the let keyword attaches the variable declaration to the scope of whatever
+block it's contained in.
+
+var foo = true;
+
+if(foo) {
+  let bar = foo * 2;
+  bar = something(bar);
+  console.log(bar);
+}
+console.log(bar); //ReferenceError
+
+using let to existing block is somewhat implicit. It is better to block
+explicitly.
+
+ex.
+
+var foo = true;
+if (foo) {
+  { //<= explicit block
+    let bar = foo * 2;
+    ...
+  }
+}
+console.log(bar) //ReferenceError
+
+** variables declared with let keyword will not be hoisted
+ex.
+{
+  console.log(bar) //ReferenceError
+  let bar = 'foo';
+}
+
+#Garbage Collection
+
+data inside explicitly blocked scope will be garbage collected, instaed of being
+persisted by closure.
+ex.
+function process(data) {
+	// do something interesting
+}
+
+// anything declared inside this block can go away after!
+{
+	let someReallyBigData = { .. };
+
+	process( someReallyBigData );
+}
+
+var btn = document.getElementById( "my_button" );
+
+btn.addEventListener( "click", function click(evt){
+	console.log("button clicked");
+}, /*capturingPhase=*/false );
+
+//---------------------------------------------------------------------------//
+#Review
+
+Functions are the most common unit of scope in JS. Variables and functions
+declared in another function are 'hidden' from enclosing scope.
+
+there is also block-scope, which refers to the idea of variables and functions
+can belong in an arbitrary block {...}, let key word can achieve this.
+
+use both var and let to their advantage.

@@ -11,10 +11,8 @@
 *.sass-cache
 node_modules/
 .tmp/
-<<<<<<< HEAD
 .env
-=======
->>>>>>> 87a9c339e1faea75494a45ac0c60412f6aca3b61
+
 
 
 

@@ -1,0 +1,78 @@
+#Scope Closure
+
+Closures happen as a result of writing code that relies on lexical scope.
+
+***
+Closure is when a function is able to remember and access its lexical scope even
+ when that function is executing outside its lexical scope.
+
+ex.
+
+ function foo() {
+ 	var a = 2;
+
+ 	function bar() {
+ 		console.log( a );
+ 	}
+
+ 	return bar;
+ }
+
+ var baz = foo();
+
+ baz(); // 2 -- Whoa, closure was just observed, man.
+
+ bar still has a reference to that scope, and that reference is called closure.
+
+ any of the various ways that functions can be passed around as values, and
+ indeed invoked in other locations, are all examples of observing/exercising
+ closure
+
+ Whenever you pass around function as a value, you will likely to exercise
+ closure.
+
+ #Module
+
+ ex.
+ function CoolModule() {
+	var something = "cool";
+	var another = [1, 2, 3];
+
+	function doSomething() {
+		console.log( something );
+	}
+
+	function doAnother() {
+		console.log( another.join( " ! " ) );
+	}
+
+	return {
+		doSomething: doSomething,
+		doAnother: doAnother
+	};
+}
+
+var foo = CoolModule();
+
+foo.doSomething(); // cool
+foo.doAnother(); // 1 ! 2 ! 3
+
+Firstly, CoolModule() is just a function, but it has to be invoked for there to
+be a module instance created. Without the execution of the outer function, the
+creation of the inner scope and the closures would not occur.
+
+Secondly, the CoolModule() function returns an object, denoted by the object-
+literal syntax { key: value, ... }. The object we return has references on it to
+ our inner functions, but not to our inner data variables. We keep those hidden
+ and private. It's appropriate to think of this object return value as
+ essentially a public API for our module.
+
+ 1) There must be an outer enclosing function that is executed at least once
+ to create an instance of the module
+
+ 2) The enclosing function must return back at least one inner function, so
+ it has closure over private scope.
+
+ ***
+ Closure is when a function can remember and access its lexical scope even when
+ it's invoked outside its lexical scope.

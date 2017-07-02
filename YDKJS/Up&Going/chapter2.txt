@@ -1,0 +1,417 @@
+# Values & Types
+
+Javascript has typed values, not typed variables.
+-string
+-number
+-boolean
+-null, undefined
+-object
+-symbol(ES6)
+
+ex.
+var a;
+typeof a;				// "undefined"
+
+a = "hello world";
+typeof a;				// "string"
+
+a = 42;
+typeof a;				// "number"
+
+a = true;
+typeof a;				// "boolean"
+
+a = null;
+typeof a;				// "object" -- weird, bug
+
+a = undefined;
+typeof a;				// "undefined"
+
+a = { b: "c" };
+typeof a;				// "object"
+
+typeof operator always returns one of six(seven as of ES6) strings.
+
+typeof a means "type of VALUE in variable a", not "type of variable a"
+because only VALUES have types in JS
+variables are just containers for those values.
+
+** typeof null is expected to return "null", but it errantly returns "object".
+** this bug will not likely to be fixed.
+
+a = undefined;
+
+  is equivalent to
+
+var a;
+
+Object typed value has properties(named locations) that each hold their own
+value of any type.
+
+ex.
+var obj = {
+	a: "hello world",
+	b: 42,
+	c: true
+};
+
+obj.a;		// "hello world"
+obj.b;		// 42
+obj.c;		// true
+
+obj["a"];	// "hello world"
+obj["b"];	// 42
+obj["c"];	// true
+
+properties can either be accessed with dot notation or bracket notation(need
+string inside or a variable.)
+
+dot notation is prefered when possible, but bracket notation is needed if the
+property name has special characters such as obj["hello world!"]
+
+ex.
+
+var obj = {
+	a: "hello world",
+	b: 42
+};
+
+var b = "a";
+
+obj[b];			// "hello world"
+obj["b"];		// 42
+
+there are also two other value types: array and function. These are like
+sub-type -- specialized versions of the object type.
+
+An array is an object that hold values of any type in numerically indexed
+positions
+
+you could use array as a normal object with named properties or use object
+as an array with numerically indexed properties, but it would be considered
+improper.
+
+array = numerically positioned values
+object = named properties
+
+other object subtype is function.
+
+ex.
+
+function foo() {
+	return 42;
+}
+
+foo.bar = "hello world";
+
+typeof foo;			// "function"
+typeof foo();		// "number"
+typeof foo.bar;		// "string"
+
+you only use function object properties in limited cases(like foo.bar);
+
+types
+-number
+-string
+-boolean
+-object
+-null(typeof null is 'object'), undefined
+
+subtypes(specilzied object)
+-function
+-array(typeof array is 'object')
+
+these types and subtypes have behaviors exposed as properties and methods that
+are quite powerful and useful.
+
+ex.
+var a = "hello world";
+var b = 3.14159;
+
+a.length;				// 11
+a.toUpperCase();		// "HELLO WORLD"
+b.toFixed(4);			// "3.1416"
+
+primative values have corresponding object wrapper
+string values have String obj
+number values have Number obj
+boolearn values have Boolean obj
+
+these wrapper object defines method and properties on its prototype
+
+when you use primative values as an object by referencing a property or method,
+JS 'boxes' the values to its object wrapper counterpart
+
+
+there are two main type of value comparison in JS: equality, and inquality
+the results of any comparison will be strictly boolean value(true or false),
+no matter what kind of values are being compared.
+
+explicit coercion means it is obvious that a value is being converted into
+another type,
+but implicit coercion is when type conversion happens as more of a non-obvious
+side effect of some other operation (42 + 'string' = '42string')
+
+explicit coercion = obvious
+implicit coercion = not obvious
+
+when a non-boolean value is coerced into a boolean value is it 'truthy' or
+'falsy'?
+
+falsy:
+""
+0, -0, NaN
+null, undefined
+false
+
+any other values, when coerced into boolean is 'truthy'
+such as, [], 'hello', 42, {}, function() {...}
+
+equality operator: ==, ===, !=, !==
+
+https://dorey.github.io/JavaScript-Equality-Table/
+
+== checks for value equality with type coercion allowed
+=== checks for value equality only(no coercion)
+
+ex.
+var a = "42";
+var b = 42;
+
+a == b;			// true
+a === b;		// false
+
+==
+when the types of the values being compared does not match,
+it goes through ordered series of steps to coerce on or both values to a
+different type until the types match, and then the values are checked.
+
+===
+only value checked
+
+avoid == if,
+** either value in a comparison could be true of false,
+** either value could be 0, [], or ""
+
+inequality: <, >, <=, >=
+
+coercion rules are similar to equality comparison, but not exactly
+there is no strict inqeuality comparison like ===
+
+if both values are strings, it is compared alphabetically
+but if one or both values are not a string, then the values are coerced into
+numbers.
+
+//---------------------------------------------------------------------------//
+
+#Variables
+
+variable names must be valid identifiers
+-must start with a-z, A-Z, $, _
+-can contain the above and 0-9
+
+generally, same apply with property names, but reserved words cannot be used
+as variable names: for, in, if, null, true, false, etc
+
+  Function Scopes
+
+use the var keyword to declare a variable to the current function scope,
+or the global scope if its is outside of any function.
+
+  Hoisting
+
+Declaration(function, variable) applies to the whole scope, so those
+declarations are available anywhere in the correspoding scope.
+
+declarations are conceptually 'moved' to the top of its enclosing scope.
+
+**do not rely on hoisting to use variable earlier than its declaration.
+**it is more common for functions to be used earlier.
+
+inner scopes can access outer scopes variables, but not vice versa.
+
+if you set a variable without declaring it, it will automatically be declared
+as a global variable(BAD)
+
+ES6 lets you declare variables to belong to individual blocks {...}, using
+let keyword.
+
+if blocks, while blocks, for blocks
+let keywords lets you contain the scope inside those blocks, unlike var which
+lets scope outside of those blocks access the variable.
+
+//---------------------------------------------------------------------------//
+
+#Conditionals
+
+if-else
+
+switch statements
+-remember to break after each cases, unless you want fall through
+
+ternary operator, conditional operator
+(conditional)?(returned value if true):(returned value if false)
+
+//---------------------------------------------------------------------------//
+
+#Strict Mode
+strict mode add restrictions which tightens the rules for certain behaviors.
+these restrictions are seen as safer, and more appropriate guidelines.
+
+strict mode applies to current scope and inner scopes
+
+ex.
+function foo() {
+	"use strict";
+
+	// this code is strict mode
+
+	function bar() {
+		// this code is strict mode
+	}
+}
+
+// this code is not strict mode
+Compare that to:
+
+"use strict";
+
+function foo() {
+	// this code is strict mode
+
+	function bar() {
+		// this code is strict mode
+	}
+}
+
+// this code is strict mode
+
+strict more disallows automatic global declaration for undeclared variables
+
+do not turn of strict mode to fix bugs!
+
+//---------------------------------------------------------------------------//
+
+#Functions as Values
+
+function itself is a value, just like 42, or [1,2,3]
+functions can be returned from other functions
+
+**
+function foo() {...}
+
+has same outcome as
+
+var foo = function foo() {...}
+**
+
+functions are also expressions since they are also values
+
+IIFE
+
+used to create variables that wont affect outside scope
+
+ex.
+var a = 42;
+
+(function IIFE(){
+	var a = 10;
+	console.log( a );	// 10
+})();
+
+console.log( a );
+
+can also have a return value
+
+ex.
+var x = (function IIFE(){
+	return 42;
+})();
+
+x;	// 42
+
+
+
+closure will the one of the most important techniques in your JS skill set
+
+***
+think of closure as a way to "remember" and continue to access a function's
+scope (its variables) even after its finished running.
+
+ex.
+
+function makeAdder(x) {
+
+  function add(y) {
+    return y+x;
+  }
+
+  return add;
+
+}
+
+the returned add function can remember which x was passed in when makerAdder
+was called.
+
+// `plusOne` gets a reference to the inner `add(..)`
+// function with closure over the `x` parameter of
+// the outer `makeAdder(..)`
+var plusOne = makeAdder( 1 );
+
+// `plusTen` gets a reference to the inner `add(..)`
+// function with closure over the `x` parameter of
+// the outer `makeAdder(..)`
+var plusTen = makeAdder( 10 );
+
+plusOne( 3 );		// 4  <-- 1 + 3
+plusOne( 41 );		// 42 <-- 1 + 41
+
+plusTen( 13 );		// 23 <-- 10 + 13
+
+//---------------------------------------------------------------------------//
+
+#this identifier
+
+If a function has a this reference inside it, that this reference usually points
+ to an object. But which object it points to depends on how the function was
+ called.
+
+ function foo() {
+	console.log( this.bar );
+}
+
+var bar = "global";
+
+var obj1 = {
+	bar: "obj1",
+	foo: foo
+};
+
+var obj2 = {
+	bar: "obj2"
+};
+
+// --------
+
+foo();				// "global"
+obj1.foo();			// "obj1"
+foo.call( obj2 );	// "obj2"
+new foo();			// undefined
+There are four rules for how this gets set, and they're shown in those last four
+ lines of that snippet.
+
+foo() ends up setting this to the global object in non-strict mode -- in strict
+mode, this would be undefined and you'd get an error in accessing the bar
+property -- so "global" is the value found for this.bar.
+obj1.foo() sets this to the obj1 object.
+foo.call(obj2) sets this to the obj2 object.
+new foo() sets this to a brand new empty object.
+Bottom line: to understand what this points to, you have to examine how the
+function in question was called. It will be one of those four ways just shown,
+and that will then answer what this is.
+
+//---------------------------------------------------------------------------//
+
+The first step to learning JavaScript's flavor of programming is to get a basic
+understanding of its core mechanisms like values, types, function closures, this
+, and prototypes.
