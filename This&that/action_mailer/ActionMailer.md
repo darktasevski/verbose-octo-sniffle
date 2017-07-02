@@ -6,14 +6,6 @@
 - http://guides.rubyonrails.org/v2.3.8/action_mailer_basics.html
 
 
-Intial version of demo app, without ActionMailer:
-
-- https://github.com/aikalima/wdi6_cook_book_forgot_blank
-
-Final version of demo app, using ActionMailer
-
-- https://github.com/aikalima/wdi6_cook_book_forgot_final
-
 ##Objectives
 
 - Understand basics of emails
@@ -48,7 +40,7 @@ http://www.howtogeek.com/56002/htg-explains-how-does-email-work
 
 ###Send an email 'old school'
 
->  echo "Hello" | mail -v -s "Test" mguehrs@gmail.com
+>  echo "Hello" | mail -v -s "Test" mail@gmail.com
 >  
 >  echo "To me …" | mail -v -s "Test 2" markus
 
@@ -121,7 +113,7 @@ For sake of simplicity, we hard coded the url. Please read this section on how t
 ####Implement User Mailer
 
 	class UserMailer < ActionMailer::Base
-  		default from: "mguehrs@gmail.com"
+  		default from: "mail@gmail.com"
 
   		def welcome_email(user)
     		@user = user
