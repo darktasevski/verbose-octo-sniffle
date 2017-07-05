@@ -1,6 +1,6 @@
 ## Binary Heap
 
-Of course, I know the binary heap well. Main operations:
+Main operations for binary heap:
 
 * Find min: `O(1)`.
 * Insert: `O(log(n))`.

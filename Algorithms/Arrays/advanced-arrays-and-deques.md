@@ -1,7 +1,6 @@
 In C++, a vector is basically a single sided dynamic array. It has
 amortized O(1) push_back; O(n) push at the front. You can use it as a
-C-style array; that's required by the standard. However, resizes will
-invalidate old references to elements (they may be moved).
+C-style array; that's required by the standard. However, resizes will invalidate old references to elements (they may be moved).
 
 A C++ deque extends an array by allowing O(1) amortized push at the
 front. We could do this using a ring buffer. However, the C++ deque,
@@ -24,7 +23,6 @@ Source: http://stackoverflow.com/questions/8627373/what-data-structure-exactly-a
 
 To get this to work, it looks like deques can use the lazy copying
 trick. A 2nd array of double the capacity is always kept, and items
-are copied into there. According to this paper, the SGI STL doesn't do
-this; they claim that's a violation of the standard.
+are copied into there. According to this paper, the SGI STL doesn't do this; they claim that's a violation of the standard.
 
 Source: http://www.cphstl.dk/Report/Deque-first-attempt/cphstl-report-2001-4.pdf

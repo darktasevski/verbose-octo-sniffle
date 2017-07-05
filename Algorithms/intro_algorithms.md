@@ -4,15 +4,14 @@
 
 ### More on Debugging
 A frequent reaction to problems in your code:
->###i am going to explode everything
-###this is ridiculous
-###how do i even debug this
+#### i am going to explode everything
+#### this is ridiculous
+#### how do i even debug this
 
 You see that your program has bugs and maybe errors and you try to understand why it is not the program you wanted.
 
 Instead, __try to understand the program you have written__.  If you understand why your program behaves in a way that you didn't expect, then you know how to change it.
 
-### Read the variable scope tutorial I sent out on Hipchat yesterday:
 [http://zetcode.com/lang/rubytutorial/variables/](http://zetcode.com/lang/rubytutorial/variables/)
 
 If you have trouble understanding it, keep re-reading it and talk to your classmates about it.
