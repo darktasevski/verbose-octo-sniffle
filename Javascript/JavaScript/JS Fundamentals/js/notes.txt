@@ -1,4 +1,4 @@
-alert is the most basic debugging tool
+alert and console.log are the most basic debugging tools
 
 log can be expanded inside dev tools
 

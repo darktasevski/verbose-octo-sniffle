@@ -7,6 +7,6 @@ function hammerTime(time) {
 }
 
 hammerTime('STOP');
-hamerTime(5);
+hammerTime(5);
 //ASYNC with closure
 //

@@ -71,7 +71,7 @@
                 /*
                  * render data
                  * ----------------------------------
-                 * @param {String} data，参数一，数据类型
+                 * @param {String} 
                  * @param {String} dataType , "json", "jsonp", "html"
                  */
                 renderData: function (data, dataType) {
@@ -90,7 +90,7 @@
         };
 
     /*
-     * Waterfall constructor，瀑布流构造函数
+     * Waterfall constructor
      */
     function Waterfall(element, options) {
         this.$element = $(element);
