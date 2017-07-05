@@ -8,23 +8,6 @@
 * Use Postgres
 * Use the pg gem to query the database from a ruby application.
 
-The lesson covers basic SQL.  It will not cover joins or more advanced nested queries.
-
-## Required For Lesson
-
-For the lesson we will be using Postgres as our database to demonstrate and practice what we are learning.  Postgres can be installed many ways, but for our purposes, Postgres.app will be the best option.  Please follow the instructions below if you have not done so already.
-
-* Make sure postgress.app is downloaded and installed.
-	* The zip'ed app can be downloaded here: http://postgresapp.com/
-	* Add a line to your bash_profile that looks like this:
-	
-	```
-	export PATH=$PATH:/Applications/Postgres93.app/Contents/MacOS/bin
-	```
-	
-* Verify the install was successful by typing ```psql``` in your terminal.  ```\q``` to quit.
-* Next install the pg gem if you have not done so already ```gem install pg```
-
 # What is a database?
 
 - Sometimes called a DBMS (Database Management System)
