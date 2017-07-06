@@ -1,12 +1,6 @@
 # Resources and Forms
 ## Intro Nested Resources and `fields_for`
-
-
-
-
-
-
-    
+   
     
 ###Resources 
     - What do nested resources look like in URLs?

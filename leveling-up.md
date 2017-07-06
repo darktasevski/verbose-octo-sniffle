@@ -5,15 +5,15 @@ In order to advance, all criteria for the current level must be meet as well as 
 
 ## Junior Developer ##
 
-- [ ] Basics of Computer Programming
+- [x] Basics of Computer Programming
 - [ ] Comfortable With All Types of Programming
 - [ ] Understands Software Development Process
-- [x] Presentation
-- [ ] Skilled in IDE and Editors
-- [ ] Competence Using Git
-- [ ] Open To Feedback
+- [ ] Presentation
+- [x] Skilled in IDE and Editors
+- [x] Competence Using Git
+- [x] Open To Feedback
 - [ ] Effective Use of Debugger
-- [ ] Read and Interpret Logs
+- [x] Read and Interpret Logs
 
 
 

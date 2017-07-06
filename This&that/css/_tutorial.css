@@ -50,7 +50,7 @@
     position: fixed;
 
     /**
-     * (positioned relative to the parent???)
+     * (positioned relative to the closest relative element)
      * use top, bottom, left, right, z-index properties also!
      */
     position: absolute;
@@ -119,24 +119,3 @@
 
 }
 
-/*
-colors:
-
-000 400 800 c00
-004 404 804 c04
-008 408 808 c08
-00c 40c 80c c0c
-040 440 840 c40
-044 444 844 c44
-048 448 848 c48
-04c 44c 84c c4c
-080 480 880 c80
-084 484 884 c84
-088 488 888 c88
-08c 48c 88c c8c
-0c0 4c0 8c0 cc0
-0c4 4c4 8c4 cc4
-0c8 4c8 8c8 cc8
-0cc 4cc 8cc ccc
-
-*/ 
