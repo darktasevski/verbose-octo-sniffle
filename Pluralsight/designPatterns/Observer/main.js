@@ -20,6 +20,7 @@ var auditingService = function () {
     }
 }
 
+
 function ObserverList() {
     this.observerList = [];
 };

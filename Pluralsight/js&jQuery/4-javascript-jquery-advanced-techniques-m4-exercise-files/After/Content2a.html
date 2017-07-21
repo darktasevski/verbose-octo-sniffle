@@ -1,0 +1,23 @@
+<!doctype html>
+<html language="en">
+	<head>
+		<title>Deferred Processing 1</title>
+		<script src="http://code.jquery.com/jquery-1.7.min.js"></script>
+		<link type="text/css" rel="stylesheet" href="DeferredStyles.css" />
+	</head>
+	<body>
+		<div id="Content2">
+		This is content #2
+		</div>
+	</body>
+<script>
+	$(function()
+	{	setTimeout(function()
+		{	$('#Content2')
+				.append('<hr />')
+				.append('more content for section 2')
+				.trigger('complete');
+		}, 500);
+	});
+</script>
+</html>

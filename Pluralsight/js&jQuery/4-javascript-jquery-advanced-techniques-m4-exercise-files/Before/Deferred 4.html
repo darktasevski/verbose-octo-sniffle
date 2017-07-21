@@ -1,0 +1,37 @@
+<!doctype html>
+<html language="en">
+	<head>
+		<title>Deferred Processing 4</title>
+		<script src="http://code.jquery.com/jquery-1.7.min.js"></script>
+		<link type="text/css" rel="stylesheet" href="DeferredStyles.css" />
+	</head>
+	<body>
+		<input id="Load" type="Button" value="Load" />
+		<div id="Section1" ></div>
+		<div id="Section2" ></div>
+		<div id="Section3" ></div>
+		<input id="Proceed" type="Button" value="Proceed" disabled="true" />
+		<div id="Messages" ></div>
+	</body>
+	<script>
+		$(function()
+		{
+			$('#Load').click(function()
+			{	$.when(
+					$.get('Content1.html', function(result)
+					{	$('#Section1').html(result);
+					}, 'html'),
+					$.get('Content2.html', function(result)
+					{	$('#Section2').html(result);
+					}, 'html'),
+					$.get('Content3.html', function(result)
+					{	$('#Section3').html(result);
+					}, 'html')
+				)
+				.then(function()
+				{	$('#Proceed').removeAttr('disabled');
+				});
+			});
+		});
+	</script>
+</html>

@@ -1,0 +1,32 @@
+#Section1, #Section2, #Section3
+{	position: absolute;
+	background-image: -moz-radial-gradient(30px 30px, #FFF, #EEF);
+	width: 200px;
+	height: 200px;
+	border: 1px solid black;
+	top: 40px;
+	overflow-y: auto;
+}
+#Section1
+{	left: 10px; 
+}
+#Section2
+{	left: 220px; 
+}
+#Section3
+{	left: 430px; 
+}
+#Proceed
+{	position: absolute;
+	width: 100px;
+	top: 250px;
+	left: 530px;
+}
+#Messages
+{	position: absolute;
+	width: 630px;
+	height: 200px;
+	top: 280px;
+	left: 10px;
+	overflow-y: auto;
+}

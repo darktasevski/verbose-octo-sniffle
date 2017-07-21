@@ -1,0 +1,12 @@
+<div id="Content1">
+This is content #1
+</div>
+<script>
+	$(function()
+	{	setTimeout(function()
+		{	$('#Content1')
+				.append('<hr />')
+				.append('more content loaded dynamically');
+		}, 2000);
+	});
+</script>

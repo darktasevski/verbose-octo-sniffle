@@ -1,0 +1,13 @@
+<div id="Content3">
+This is content #3
+</div>
+<script>
+	$(function()
+	{	setTimeout(function()
+		{	$('#Content3')
+				.append('<hr />')
+				.append('Some really important information that you need to read')
+				.trigger('complete');
+		}, 3000);
+	});
+</script>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html language="en">
+	<head>
+		<title>Deferred Processing 7</title>
+		<script src="http://code.jquery.com/jquery-1.7.min.js"></script>
+		<link type="text/css" rel="stylesheet" href="DeferredStyles.css" />
+	</head>
+	<body>
+		<input id="Load" type="Button" value="Load" />
+		<div id="Section1" ></div>
+		<div id="Section2" ></div>
+		<div id="Section3" ></div>
+		<input id="Proceed" type="Button" value="Proceed" disabled="true" />
+		<div id="Messages" ></div>
+	</body>
+	<script>
+		$(function()
+		{	var loadSection = function(options)
+				{	if (typeof options !== 'object') 
+						options = {};
+					options.selector = options.selector || '';
+					options.url = options.url || '';
+					return $.get(options.url, function(result)
+						   {	$(options.selector).html(result)
+						   },'html');
+				}
+			
+			$('#Load').click(function()
+			{	$.when( 
+					loadSection({ selector: '#Section1', url: 'Content11.html' }),
+					loadSection({ selector: '#Section2', url: 'Content2.html' }),
+					loadSection({ selector: '#Section3', url: 'Content3.html' })
+				)
+				.done(function()
+				{
+				})
+				.fail(function(result)
+				{	$('#Messages').append('Failure!<br />')
+						.append('Result:' + result.statusText + '<br />');
+				})
+				.always(function()
+				{	$('#Proceed').removeAttr('disabled');
+				});
+			});
+		});
+	</script>
+</html>

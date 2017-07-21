@@ -1,0 +1,105 @@
+<!doctype html>
+<html language="en">
+	<head>
+		<title>Deferred Processing 10</title>
+		<script src="http://code.jquery.com/jquery-1.7.min.js"></script>
+		<link type="text/css" rel="stylesheet" href="DeferredStyles.css" />
+	</head>
+	<body>
+		<input id="Load" type="Button" value="Load" />
+		<div id="Section1" ></div>
+		<div id="Section2" ></div>
+		<div id="Section3" ></div>
+		<input id="Proceed" type="Button" value="Proceed" disabled="true" />
+		<div id="Messages" ></div>
+	</body>
+	<script>
+		$(function()
+		{	var showMessage = function(options)
+				{	if (typeof options !== 'object')
+						options = { message: 'Parameter not an object', error: true };
+					options.message = options.message || 'No message specified';
+					options.error = options.error || false;
+					$('#Messages')
+						.append(options.error ? 'Error: ' : '')
+						.append(options.message)
+						.append('<br />');
+				},
+				loadSection = function(options)
+				{	var defer = $.Deferred(),
+						$div, msg;
+					
+					if (typeof options !== 'object')
+					{	msg = 'Expecting parameter object';
+						showMessage({ message: msg, error: true });
+						return defer.reject({ statusText: msg });
+					}
+					
+					options.selector = options.selector || '';
+					options.url = options.url || '';
+					options.dynamic = options.dynamic || false;
+					
+					if (options.url === '')
+					{	msg = 'Missing URL';
+						showMEssage({ message: msg, error: true });
+						return defer.reject({ statusText: msg });
+					}
+					
+					$div = $(options.selector)
+					if ($div.length > 0)
+					{	$.get(options.url, function(){}, 'html')
+							.done(function(result)
+							{	$div.html(result);
+								if (!options.dynamic)
+								{	defer.resolve();
+								}
+							})
+							.fail(function(result)
+							{	msg = 'Could not load URL: ' + options.url;
+								showMessage({ message: msg, error: true });
+								defer.reject(result);							
+							});
+						if (options.dynamic)
+							$div.off('complete,failure')
+								.on('complete', function(event)
+								{	defer.resolve();
+								})
+								.on('failure', function(event, result)
+								{	msg = 'Dynamic content: ' + result.statusText;
+									showMessage({ message: msg, error: true });
+									defer.reject(result);
+								});
+					}
+					else
+					{	msg = 'Error in selector';
+						showMessage({ message: msg, error: true });
+						defer.reject({ statusText: msg });
+					}
+					
+					return defer.promise();
+				}
+			
+			$('#Load').click(function()
+			{	$.when(
+					showMessage({ message: 'Starting processing' }),
+					loadSection({ selector: '#Section1', url: 'Content1b.html',
+								  dynamic: true }),
+					loadSection({ selector: '#Section2', url: 'Content2.html' }),
+					loadSection({ selector: '#Section3', url: 'Content3a.html', 
+								  dynamic: true }),
+					showMessage({ message: 'Done with processing' })
+				)
+				.done(function()
+				{	
+				})
+				.fail(function(result)
+				{	$('#Messages').append('Failure!<br />')
+						.append('Result:' + result.statusText + '<br />');
+				})
+				.always(function()
+				{	$('#Proceed').removeAttr('disabled');
+				});
+			});
+		});
+	</script>
+</html>

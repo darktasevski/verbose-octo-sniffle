@@ -1,0 +1,87 @@
+<!doctype html>
+<html language="en">
+	<head>
+		<title>Events 9</title>
+		<script src="http://code.jquery.com/jquery-1.7.min.js"></script>
+		<link type="text/css" rel="stylesheet" href="EventStyles.css" />
+	</head>
+	<body>
+		<div id="WorkArea" class="clickable">
+			<h5 class="clickable">Work Area</h5>
+			<hr />
+			<input type="button" class="clickable" value="Click Me" />
+			<p class="clickable">
+			Click me, too!
+			</p>
+			<p class="clickable">This is some more text with an embedded 
+			   <span class="clickable">clickable</span> element.
+			</p>
+		</div>
+		<div id="Messages" >
+			<h5>Messages</h5>
+			<hr />
+		</div>
+	</body>
+	<script>
+	$(function()
+	{	var showEventMessage = function(options)
+			{	options = $.extend( 
+				{	eventType: 'click',
+					eventTarget: this,
+					suffix: '<br/>'
+				}, options);
+				var message = options.eventType + ': ' +
+							  (options.eventTarget.nodeName || 'unknown') +
+							  options.suffix;
+				$('#Messages').append(message);
+			},
+			notifyObject = $({ nodeName: 'INTERNAL' }),
+			internalObject = { records: [], maxCount: 5 },
+			loadRecord = function()
+			{	var id = internalObject.records.length;
+				if (id < internalObject.maxCount)
+				{	internalObject.records.push(
+					{	'description': 'Record id ' + id,
+						value: Math.floor(Math.random() * 5000)
+					});
+					setTimeout(loadRecord, Math.floor(Math.random() * 1000));
+				}
+				else
+					$(notifyObject).trigger('recordsloaded', internalObject);
+			};
+		
+		$('.clickable')
+			.on('click', internalObject, function(event)
+			{	var $this = $(this),
+					clickCount = ($this.data('clickcount') || 0) +1;
+			
+				$this.data('clickcount', clickCount);
+				showEventMessage.call(this, 
+						{ eventType: '' + clickCount + ') ' + event.type });
+				
+				if (clickCount === 3)
+					$this.trigger('click3');
+				if ($this.attr('type') === 'button')
+				{	var theObject = event.data || { records: [] };
+					$('#Messages')
+						.append('Record count: ' + theObject.records.length + '<br/>');
+
+					loadRecord();
+				}
+			})
+			.on('click3', function(event)
+			{	event.stopPropagation();
+				showEventMessage.call(this, {eventType: event.type});
+				$(this).addClass('highlight');
+			});
+		$(notifyObject)
+			.on('recordsloaded', function(event, theObject)
+			{	showEventMessage.call(this, {eventType: event.type});
+				$.each(theObject.records, function()
+				{	$('#Messages').append(' -- ' + 
+						this.description + ': ' + this.value + '<br/>');
+				});
+			});
+	});
+	</script>
+</html>

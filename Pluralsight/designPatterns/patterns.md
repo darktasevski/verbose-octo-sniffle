@@ -109,3 +109,26 @@ TASK                NOTIFICATION
                     AUDITING
 ```
 We are going to Decorate task with the list of the observers and a Notify() method. And when something happens on task, Notify() will send the message to each of these three services( observers).
+
+### Mediator pattern 
+
+Controls communication between objects so neither object has to be coupled to the others.
+
+* Allows for a loosely coupled system
+* One object manages all communication
+* Allows many to many relationships 
+
+```
+                       |--> LOGGING
+TASK ----> MEDIATOR ---|--> NOTIFICATIONS
+                       |--> AUDITING
+```
+
+### Commander pattern 
+
+Encapsulates the calling of a method as an object. 
+
+* Fully decouples the execution from the implementation.
+* Allows for less fragile implementations.
+* Support undo operations.
+* Supports auditing and logging of the operations. 
