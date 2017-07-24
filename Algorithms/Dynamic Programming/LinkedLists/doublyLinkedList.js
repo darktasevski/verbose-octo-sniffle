@@ -5,7 +5,7 @@ const LinkedList = () => {
 }
 
 const Node = (value) => {
-  let node = {};
+  let node = {}; // Object.create() maybe ?
   node.value = value;
   node.next = null;
   node.prev = null;
