@@ -29,19 +29,16 @@ app.use('/assets', express.static('assets'))
 /**
  **** EJS
 */
-
 // Route variables/parameters (:id) accessed via req object (req.params)
 app.get('/variable/:name', function(req, res) {
   res.send('You requested to see a profile with the id of ' + req.params.name);
 });
-
 // res.render() -> looks in `/views` folder
 // Passed in property name of object ('person' in this case)
 app.get('/profile/:name', function(req, res) {
   var data = {age: 29, job: 'Ninja', hobbies: ['eating', 'fighting', 'fishing']}
   res.render('profile', {person: req.params.name, data: data});
 })
-
 app.get('/contact', function(req, res) {
   // Request object also passes in queries, as an object
   res.render('contact', {qs: req.query});
