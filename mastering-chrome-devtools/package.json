@@ -1,0 +1,25 @@
+{
+  "name": "mastering-chrome-devtools",
+  "version": "1.0.0",
+  "description": "An example web site for Chrome DevTools workshops",
+  "main": "server.js",
+  "dependencies": {
+    "compression": "^1.6.2",
+    "express": "^4.14.0",
+    "pug": "^2.0.0-beta6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jkup/mastering-chrome-devtools.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jkup/mastering-chrome-devtools/issues"
+  },
+  "homepage": "https://github.com/jkup/mastering-chrome-devtools#readme"
+}

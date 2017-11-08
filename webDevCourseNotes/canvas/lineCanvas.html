@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas</title>
+</head>
+<body>
+    <canvas id="canvas" style=" width: 550px; height: 550px; border: 1px solid black;"></canvas>
+    <script>
+            var canvas = document.getElementById('canvas');
+            var canvasX = canvas.getContext('2d');
+            canvasX.beginPath();
+            canvasX.moveTo(0, 0); // starting point of the line 
+            // canvas.moveTo(left, top);
+            canvasX.lineTo(150, 100); // ending point of the line 
+            canvasX.lineWidth = 6;
+            canvasX.strokeStyle = 'blue';
+            canvasX.lineCap = 'round';
+            canvasX.stroke();
+        </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="canvas" width="500px" height="500px" style=" border: 1px solid black;"></canvas>
+    <script>
+        var x = 250;
+        var y = 250;
+        var radius = 150;
+        var startAngle = 0;
+        var endAngle = 2 * Math.PI;
+
+        var canvas = document.getElementById('canvas');
+        var context = canvas.getContext('2d');
+        context.beginPath();
+        context.arc(x, y, radius, startAngle, endAngle);
+        context.stroke();
+        
+    </script>
+</body>
+</html>
